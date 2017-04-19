@@ -112,7 +112,7 @@ class GameScene: SKScene, UIScrollViewDelegate
         }
 
         i = 0
-        for Star in arrayOfLines {
+        for Star in arrayOfStars {
             Star.position.x = starsOriginalXArray[i] - scrollView.contentOffset.x
             Star.position.y = starsOriginalYArray[i] + scrollView.contentOffset.y
             i = i + 1
