@@ -80,6 +80,9 @@ class GameScene: SKScene, UIScrollViewDelegate
     
     func adjustContent(scrollView: UIScrollView)
     {
+        hideScrollViewButton!.center.x = hideScrollViewButtonOriginalX! + scrollView.contentOffset.x
+        hideScrollViewButton!.center.y = hideScrollViewButtonOriginalY! + scrollView.contentOffset.y
+        
         var i = 0
         for Node in arrayOfNodes
         {
@@ -88,9 +91,6 @@ class GameScene: SKScene, UIScrollViewDelegate
             
             i += 1
         }
-        
-        hideScrollViewButton!.center.x = hideScrollViewButtonOriginalX! + scrollView.contentOffset.x
-        hideScrollViewButton!.center.y = hideScrollViewButtonOriginalY! + scrollView.contentOffset.y
         
         i = 0
         for Line in arrayOfLines
@@ -109,7 +109,6 @@ class GameScene: SKScene, UIScrollViewDelegate
             
             i += 1
         }
-        
     }
     
     override func update(_ currentTime: TimeInterval)
