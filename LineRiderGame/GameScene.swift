@@ -21,33 +21,23 @@ class GameScene: SKScene, UIScrollViewDelegate
     var ball: SKShapeNode?
     
     var ballFlag: Bool = false
-    var level: Int = 0
+    var level: Int = 1
     
     var scrollView: UIScrollView?
-    
-    var spawnImage: SKShapeNode?
-    var spawnImageNodeOriginalX: CGFloat?
-    var spawnImageNodeOriginalY: CGFloat?
-    
-    var basketImage: SKShapeNode?
-    var basketImageNodeOriginalX: CGFloat?
-    var basketImageNodeOriginalY: CGFloat?
-    
-    var backBoard: SKShapeNode?
-    var backBoardNodeOriginalX: CGFloat?
-    var backBoardNodeOriginalY: CGFloat?
-    
-    var insideBasket: SKShapeNode?
-    var insideBasketNodeOriginalX: CGFloat?
-    var insideBasketNodeOriginalY: CGFloat?
-    
-    var basket: SKShapeNode?
-    var basketNodeOriginalX: CGFloat?
-    var basketNodeOriginalY: CGFloat?
     
     var hideScrollViewButton: UIButton?
     var hideScrollViewButtonOriginalX: CGFloat?
     var hideScrollViewButtonOriginalY: CGFloat?
+    
+    var spawnImage: SKShapeNode?
+    
+    var starImage: SKShapeNode?
+    
+    var basketImage: SKShapeNode?
+    var backBoard: SKShapeNode?
+    var insideBasket: SKShapeNode?
+    var outsideBasket: SKShapeNode?
+    var slantedBasketWall: SKShapeNode?
     
     var arrayOfNodes = [SKShapeNode]()
     var nodeOriginalXArray = [CGFloat]()
@@ -61,11 +51,12 @@ class GameScene: SKScene, UIScrollViewDelegate
     var starsOriginalXArray = [CGFloat]()
     var starsOriginalYArray = [CGFloat]()
     
+    var stars: [String: Float]?
+    
     override func didMove(to view: SKView)
     {
         /* Setup your scene here */
         self.createLevel(levelNumber: level)
-        
     }
     
     override func willMove(from view: SKView)
@@ -146,8 +137,16 @@ class GameScene: SKScene, UIScrollViewDelegate
             }
             self.createSpawnMarker(withX: -292, withY: 120)
             self.createBasket(withImage: "basket", withX: 100, withY: 0)
+            self.createStarsMarker(withStars: ["stars": 0])
             
         case 1:
+            if self.scrollView?.isHidden != true
+            {
+                self.scrollView = setUpScrollView(withContentSize: 1000, andHeight: 1000)
+            }
+            self.createSpawnMarker(withX: -292, withY: 100)
+            self.createBasket(withImage: "basket", withX: 200, withY: -100)
+            self.createStarsMarker(withStars: ["stars": 3, "star0X": -263, "star0Y": 34, "star1X": -318, "star1Y": -33, "star2X": -138, "star2Y": -84])
             break
             
         default:
@@ -178,6 +177,28 @@ class GameScene: SKScene, UIScrollViewDelegate
         self.addChild(spawnImage!)
         
         arrayOfNodes.append(spawnImage!)
+    }
+    
+    func createStarsMarker(withStars stars: NSDictionary)
+    {
+        /*
+        let textureStar: SKTexture! = SKTexture(imageNamed: "")
+        let starSize: CGSize = textureStar.size()
+        
+        starImage = SKShapeNode(rectOf: starSize)
+        starImage!.fillTexture = textureStar
+        starImage!.fillColor = SKColor.white
+        starImage!.position = CGPoint(x: x, y: y)
+        //starImage!.name
+        self.addChild(starImage!)
+        
+        arrayOfStars.append(starImage!)
+        */
+        
+        if let numberOfStars = stars["stars"] as? Int, numberOfStars > 0
+        {
+            print("level 0")
+        }
     }
     
     func createBasket(withImage image: String, withX x: CGFloat, withY y: CGFloat)
@@ -217,10 +238,10 @@ class GameScene: SKScene, UIScrollViewDelegate
     func createBasketHoop(withX x: CGFloat, withY y: CGFloat)
     {
         let insideBasketBezierPath = UIBezierPath()
-        insideBasketBezierPath.move(to: CGPoint(x: -4.0, y: 15.0))
+        insideBasketBezierPath.move(to: CGPoint(x: -4.0, y: 10.0))
         insideBasketBezierPath.addLine(to: CGPoint(x: 0.0, y: 0.0))
         insideBasketBezierPath.addLine(to: CGPoint(x: 31.0, y: 0.0))
-        insideBasketBezierPath.addLine(to: CGPoint(x: 32.0, y: 15.0))
+        insideBasketBezierPath.addLine(to: CGPoint(x: 32.0, y: 10.0))
         
         insideBasket = SKShapeNode(path: insideBasketBezierPath.cgPath)
         insideBasket!.strokeColor = UIColor.clear
@@ -230,24 +251,38 @@ class GameScene: SKScene, UIScrollViewDelegate
         
         arrayOfNodes.append(insideBasket!)
         
-        let basketBezierPath = UIBezierPath()
-        basketBezierPath.move(to: CGPoint(x: -5.0, y: 18.0))
-        basketBezierPath.addLine(to: CGPoint(x: 0.0, y: 0.0))
-        basketBezierPath.addLine(to: CGPoint(x: 33.0, y: 0.0))
-        basketBezierPath.addLine(to: CGPoint(x: 35.0, y: 18.0))
+        let outsideBasketBezierPath = UIBezierPath()
+        outsideBasketBezierPath.move(to: CGPoint(x: -5.0, y: 18.0))
+        outsideBasketBezierPath.addLine(to: CGPoint(x: 0.0, y: 0.0))
+        outsideBasketBezierPath.addLine(to: CGPoint(x: 33.0, y: 0.0))
+        outsideBasketBezierPath.addLine(to: CGPoint(x: 35.0, y: 18.0))
         
-        basket = SKShapeNode(path: basketBezierPath.cgPath)
-        basket!.strokeColor = UIColor.clear
-        basket!.position = CGPoint(x: x - 23, y: y - 43)
-        basket!.physicsBody = SKPhysicsBody(edgeChainFrom: basket!.path!)
-        self.addChild(basket!)
+        outsideBasket = SKShapeNode(path: outsideBasketBezierPath.cgPath)
+        outsideBasket!.strokeColor = UIColor.clear
+        outsideBasket!.position = CGPoint(x: x - 23, y: y - 43)
+        outsideBasket!.physicsBody = SKPhysicsBody(edgeChainFrom: outsideBasket!.path!)
+        self.addChild(outsideBasket!)
         
-        arrayOfNodes.append(basket!)
+        arrayOfNodes.append(outsideBasket!)
+        
+        let slantedBasketWallBezierPath = UIBezierPath()
+        slantedBasketWallBezierPath.move(to: CGPoint(x: 5.0, y: 11.0))
+        slantedBasketWallBezierPath.addLine(to: CGPoint(x: 0.0, y: 0.0))
+        
+        slantedBasketWall = SKShapeNode(path: slantedBasketWallBezierPath.cgPath)
+        slantedBasketWall!.strokeColor = UIColor.clear
+        slantedBasketWall!.position = CGPoint(x: x + 13, y: y - 25)
+        slantedBasketWall!.physicsBody = SKPhysicsBody(edgeChainFrom: slantedBasketWall!.path!)
+        self.addChild(slantedBasketWall!)
+        
+        arrayOfNodes.append(slantedBasketWall!)
+        
     }
     
     func setOriginalPositionsForStaticNodes()
     {
-        for node in arrayOfNodes {
+        for node in arrayOfNodes
+        {
             let nodeXposition = node.position.x
             nodeOriginalXArray.append(nodeXposition)
             let nodeYposition = node.position.y
