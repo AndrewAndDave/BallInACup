@@ -247,20 +247,12 @@ class GameScene: SKScene, UIScrollViewDelegate
     
     func setOriginalPositionsForStaticNodes()
     {
-        nodeOriginalXArray.append(spawnImage!.position.x)
-        nodeOriginalYArray.append(spawnImage!.position.y)
-        
-        nodeOriginalXArray.append(basketImage!.position.x)
-        nodeOriginalYArray.append(basketImage!.position.y)
-        
-        nodeOriginalXArray.append(backBoard!.position.x)
-        nodeOriginalYArray.append(backBoard!.position.y)
-        
-        nodeOriginalXArray.append(basket!.position.x)
-        nodeOriginalYArray.append(basket!.position.y)
-        
-        nodeOriginalXArray.append(basket!.position.x + 2)
-        nodeOriginalYArray.append(basket!.position.y + 2)
+        for node in arrayOfNodes {
+            let nodeXposition = node.position.x
+            nodeOriginalXArray.append(nodeXposition)
+            let nodeYposition = node.position.y
+            nodeOriginalYArray.append(nodeYposition)
+        }
     }
     
     func createBall(withImage: String)
