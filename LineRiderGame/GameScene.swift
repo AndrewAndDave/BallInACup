@@ -313,6 +313,7 @@ class GameScene: SKScene, UIScrollViewDelegate
         self.addChild(ball!)
     }
     
+    
     func cleanUpLevel ()
     {
         self.removeAllChildren()
