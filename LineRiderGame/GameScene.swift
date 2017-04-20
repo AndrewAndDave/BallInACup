@@ -145,7 +145,7 @@ class GameScene: SKScene, UIScrollViewDelegate
             }
             self.createSpawnMarker(withX: -292, withY: 100)
             self.createBasket(withImage: "basket", withX: 200, withY: -100)
-            self.createStarsMarker(withStars: [(x: -263, y:34), (x: -263, y:34), (x: -263, y:34)])
+            self.createStarsMarker(withStars: [(x: -263, y:34), (x: -318, y:-33), (x: -138, y:-84)])
             break
             
         default:
@@ -182,15 +182,19 @@ class GameScene: SKScene, UIScrollViewDelegate
     {
         for star in stars
         {
-            let textureStar: SKTexture! = SKTexture(imageNamed: "")
+            let textureStar: SKTexture! = SKTexture(imageNamed: "Star")
             let starSize: CGSize = textureStar.size()
             
             starImage = SKShapeNode(rectOf: starSize)
             starImage!.fillTexture = textureStar
             starImage!.fillColor = SKColor.white
+            starImage!.lineWidth = 0.0
             starImage!.position = CGPoint(x: star.x, y: star.y)
             starImage!.name = "star\(star)"
             self.addChild(starImage!)
+            
+            starsOriginalXArray.append(star.x)
+            starsOriginalYArray.append(star.y)
             
             arrayOfStars.append(starImage!)
         }
@@ -213,6 +217,7 @@ class GameScene: SKScene, UIScrollViewDelegate
         basketImage = SKShapeNode(rectOf: basketSize)
         basketImage!.fillTexture = textureBasket
         basketImage!.fillColor = SKColor.white
+        basketImage!.lineWidth = 0.0
         basketImage!.position = CGPoint(x: x, y: y)
         self.addChild(basketImage!)
         
