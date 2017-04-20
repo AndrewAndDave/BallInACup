@@ -330,7 +330,10 @@ class GameScene: SKScene, UIScrollViewDelegate
         splineShapeNode = nil
         
         let touch = touches.first
-        let point = touch?.location(in: self)
+        var point = touch?.location(in: scrollView)
+        point!.x = point!.x - ((self.view?.frame.width)! / 2) - scrollView!.contentOffset.x
+        point!.y = (point!.y - ((self.view?.frame.height)! / 2)) * (-1) + scrollView!.contentOffset.y
+
         
         mutablePath = CGMutablePath()
         mutablePath.move(to: point!)
@@ -342,8 +345,11 @@ class GameScene: SKScene, UIScrollViewDelegate
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?)
     {
         let touch = touches.first
-        let point = touch?.location(in: self)
+        var point = touch?.location(in: scrollView)
+        point!.x = point!.x - ((self.view?.frame.width)! / 2) - scrollView!.contentOffset.x
+        point!.y = (point!.y - ((self.view?.frame.height)! / 2)) * (-1) + scrollView!.contentOffset.y
         
+
         mutablePath.addLine(to: point!)
         splineShapeNode.path = mutablePath
     }
@@ -353,8 +359,10 @@ class GameScene: SKScene, UIScrollViewDelegate
         splineShapeNode.physicsBody = SKPhysicsBody(edgeChainFrom: splineShapeNode.path!)
         splineShapeNode.physicsBody?.affectedByGravity = false
         arrayOfLines.append(splineShapeNode)
-        linesOriginalXArray.append(splineShapeNode.position.x)
-        linesOriginalYArray.append(splineShapeNode.position.y)
+        linesOriginalXArray.append(splineShapeNode.position.x + scrollView!.contentOffset.x)
+        linesOriginalYArray.append(splineShapeNode.position.y - scrollView!.contentOffset.y)
+        adjustContent(scrollView: scrollView!)
+       
     }
     
     func hideScrollView ()
