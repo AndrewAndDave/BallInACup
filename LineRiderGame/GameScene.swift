@@ -137,7 +137,6 @@ class GameScene: SKScene, UIScrollViewDelegate
             }
             self.createSpawnMarker(withX: -292, withY: 120)
             self.createBasket(withImage: "basket", withX: 100, withY: 0)
-            self.createStarsMarker(withStars: ["stars": 0])
             
         case 1:
             if self.scrollView?.isHidden != true
@@ -146,7 +145,7 @@ class GameScene: SKScene, UIScrollViewDelegate
             }
             self.createSpawnMarker(withX: -292, withY: 100)
             self.createBasket(withImage: "basket", withX: 200, withY: -100)
-            self.createStarsMarker(withStars: ["stars": 3, "star0X": -263, "star0Y": 34, "star1X": -318, "star1Y": -33, "star2X": -138, "star2Y": -84])
+            self.createStarsMarker(withStars: [(x: -263, y:34), (x: -263, y:34), (x: -263, y:34)])
             break
             
         default:
@@ -179,25 +178,21 @@ class GameScene: SKScene, UIScrollViewDelegate
         arrayOfNodes.append(spawnImage!)
     }
     
-    func createStarsMarker(withStars stars: NSDictionary)
+    func createStarsMarker(withStars stars: [(x: CGFloat, y: CGFloat)])
     {
-        /*
-        let textureStar: SKTexture! = SKTexture(imageNamed: "")
-        let starSize: CGSize = textureStar.size()
-        
-        starImage = SKShapeNode(rectOf: starSize)
-        starImage!.fillTexture = textureStar
-        starImage!.fillColor = SKColor.white
-        starImage!.position = CGPoint(x: x, y: y)
-        //starImage!.name
-        self.addChild(starImage!)
-        
-        arrayOfStars.append(starImage!)
-        */
-        
-        if let numberOfStars = stars["stars"] as? Int, numberOfStars > 0
+        for star in stars
         {
-            print("level 0")
+            let textureStar: SKTexture! = SKTexture(imageNamed: "")
+            let starSize: CGSize = textureStar.size()
+            
+            starImage = SKShapeNode(rectOf: starSize)
+            starImage!.fillTexture = textureStar
+            starImage!.fillColor = SKColor.white
+            starImage!.position = CGPoint(x: star.x, y: star.y)
+            starImage!.name = "star\(star)"
+            self.addChild(starImage!)
+            
+            arrayOfStars.append(starImage!)
         }
     }
     
