@@ -18,10 +18,13 @@ class GameScene: SKScene, UIScrollViewDelegate
     var mutablePath: CGMutablePath!
     var splineShapeNode: SKShapeNode!
     
+    var cleanLevel = false
+    
     var ball: SKShapeNode?
     
     var ballFlag: Bool = false
     var level: Int = 1
+    var score: Int = 0
     
     var scrollView: UIScrollView?
     
@@ -31,7 +34,7 @@ class GameScene: SKScene, UIScrollViewDelegate
     
     var spawnImage: SKShapeNode?
     
-    var starImage: SKShapeNode?
+    var starHitOnce: Bool = false
     
     var basketImage: SKShapeNode?
     var backBoard: SKShapeNode?
@@ -50,6 +53,8 @@ class GameScene: SKScene, UIScrollViewDelegate
     var arrayOfStars = [SKShapeNode]()
     var starsOriginalXArray = [CGFloat]()
     var starsOriginalYArray = [CGFloat]()
+    var arrayOfStarsHit = [Bool]()
+    var starsToRemove = Set<SKShapeNode>()
     
     override func didMove(to view: SKView)
     {
@@ -102,7 +107,22 @@ class GameScene: SKScene, UIScrollViewDelegate
     
     override func update(_ currentTime: TimeInterval)
     {
+        if cleanLevel
+        {
+            cleanUpLevel()
+            
+            cleanLevel = false
+        }
+        
+        for star in starsToRemove
+        {
+            star.removeFromParent()
+        }
+        
+        starsToRemove.removeAll()
+        
         self.checkBasketBoundary()
+        self.checkStarBoundary()
     }
     
     func checkBasketBoundary()
@@ -120,6 +140,29 @@ class GameScene: SKScene, UIScrollViewDelegate
                 level += 1
                 
                 self.createLevel(levelNumber: level)
+            }
+        }
+    }
+    
+    func checkStarBoundary()
+    {
+        if ball != nil
+        {
+            for count in 0..<arrayOfStars.count
+            {
+                if ball!.intersects(arrayOfStars[count]) && !arrayOfStarsHit[count]
+                {
+                    arrayOfStarsHit[count] = true
+                    
+                    let starMoveUpAnimation = SKAction.move(to: CGPoint(x: starsOriginalXArray[count], y: starsOriginalYArray[count] + 10), duration: 1)
+                    let starMoveDownAnimation = SKAction.move(to: CGPoint(x: starsOriginalXArray[count], y: starsOriginalYArray[count]), duration: 1)
+                    let starTransparencyAnimation = SKAction.fadeOut(withDuration: 3)
+                    
+                    arrayOfStars[count].run(SKAction.sequence([starMoveUpAnimation, starMoveDownAnimation, starTransparencyAnimation]), completion:
+                        {
+                            self.starsToRemove.update(with: self.arrayOfStars[count])
+                        })
+                }
             }
         }
     }
@@ -183,18 +226,18 @@ class GameScene: SKScene, UIScrollViewDelegate
             let textureStar: SKTexture! = SKTexture(imageNamed: "Star")
             let starSize: CGSize = textureStar.size()
             
-            starImage = SKShapeNode(rectOf: starSize)
-            starImage!.fillTexture = textureStar
-            starImage!.fillColor = SKColor.white
-            starImage!.lineWidth = 0.0
-            starImage!.position = CGPoint(x: star.x, y: star.y)
-            starImage!.name = "star\(star)"
-            self.addChild(starImage!)
+            let starImage = SKShapeNode(rectOf: starSize)
+            starImage.fillTexture = textureStar
+            starImage.fillColor = SKColor.white
+            starImage.lineWidth = 0.0
+            starImage.position = CGPoint(x: star.x, y: star.y)
+            self.addChild(starImage)
             
             starsOriginalXArray.append(star.x)
             starsOriginalYArray.append(star.y)
             
-            arrayOfStars.append(starImage!)
+            arrayOfStars.append(starImage)
+            arrayOfStarsHit.append(false)
         }
     }
     
@@ -320,7 +363,16 @@ class GameScene: SKScene, UIScrollViewDelegate
     func cleanUpLevel ()
     {
         self.removeAllChildren()
+        
+        ball = nil
+        
         arrayOfLines = Array()
+        arrayOfNodes = Array()
+        arrayOfStars = Array()
+        arrayOfStarsHit = []
+        starsOriginalXArray = Array()
+        starsOriginalYArray = Array()
+        
         self.createLevel(levelNumber: level)
     }
     

@@ -93,7 +93,7 @@ class GameViewController: UIViewController
     @IBAction func resetLevel(_ sender: UIButton)
     {
         gameScene!.ballFlag = false
-        gameScene!.cleanUpLevel()
+        gameScene!.cleanLevel = true
         //reset game state
     }
     
