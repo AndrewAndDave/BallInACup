@@ -23,7 +23,7 @@ class GameScene: SKScene, UIScrollViewDelegate
     var ball: SKShapeNode?
     
     var ballFlag: Bool = false
-    var level: Int = 1
+    var level: Int = 0
     var score: Int = 0
     
     var scrollView: UIScrollView?
@@ -135,7 +135,7 @@ class GameScene: SKScene, UIScrollViewDelegate
                 
                 ball?.run(ballTransparencyAnimation)
                 
-                print("CONGRATULATIONS")
+                cleanLevel = true
                 
                 level += 1
                 
@@ -161,6 +161,8 @@ class GameScene: SKScene, UIScrollViewDelegate
                     arrayOfStars[count].run(SKAction.sequence([starMoveUpAnimation, starMoveDownAnimation, starTransparencyAnimation]), completion:
                         {
                             self.starsToRemove.update(with: self.arrayOfStars[count])
+                            
+                            self.score += 10
                         })
                 }
             }
