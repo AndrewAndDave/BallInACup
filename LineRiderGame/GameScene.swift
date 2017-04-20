@@ -25,6 +25,10 @@ class GameScene: SKScene, UIScrollViewDelegate
     
     var scrollView: UIScrollView?
     
+    var hideScrollViewButton: UIButton?
+    var hideScrollViewButtonOriginalX: CGFloat?
+    var hideScrollViewButtonOriginalY: CGFloat?
+    
     var spawnImage: SKShapeNode?
     var spawnImageNodeOriginalX: CGFloat?
     var spawnImageNodeOriginalY: CGFloat?
@@ -45,9 +49,7 @@ class GameScene: SKScene, UIScrollViewDelegate
     var outsideBasketNodeOriginalX: CGFloat?
     var outsideBasketNodeOriginalY: CGFloat?
     
-    var hideScrollViewButton: UIButton?
-    var hideScrollViewButtonOriginalX: CGFloat?
-    var hideScrollViewButtonOriginalY: CGFloat?
+    
     
     var arrayOfNodes = [SKShapeNode]()
     var nodeOriginalXArray = [CGFloat]()
@@ -65,7 +67,6 @@ class GameScene: SKScene, UIScrollViewDelegate
     {
         /* Setup your scene here */
         self.createLevel(levelNumber: level)
-        
     }
     
     override func willMove(from view: SKView)
@@ -243,12 +244,15 @@ class GameScene: SKScene, UIScrollViewDelegate
         self.addChild(outsideBasket!)
         
         arrayOfNodes.append(outsideBasket!)
+        
+        let slantedWallBezierPath = UIBezierPath()
+        slantedWallBezierPath.move(to: CGPoint(x: 5.0, y: 10.0))
     }
     
     func setOriginalPositionsForStaticNodes()
     {
-
-        for node in arrayOfNodes {
+        for node in arrayOfNodes
+        {
             let nodeXposition = node.position.x
             nodeOriginalXArray.append(nodeXposition)
             let nodeYposition = node.position.y
