@@ -51,8 +51,6 @@ class GameScene: SKScene, UIScrollViewDelegate
     var starsOriginalXArray = [CGFloat]()
     var starsOriginalYArray = [CGFloat]()
     
-    var stars: [String: Float]?
-    
     override func didMove(to view: SKView)
     {
         /* Setup your scene here */
