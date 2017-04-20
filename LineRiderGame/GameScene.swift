@@ -34,8 +34,6 @@ class GameScene: SKScene, UIScrollViewDelegate
     
     var spawnImage: SKShapeNode?
     
-    var starHitOnce: Bool = false
-    
     var basketImage: SKShapeNode?
     var backBoard: SKShapeNode?
     var insideBasket: SKShapeNode?
@@ -53,6 +51,7 @@ class GameScene: SKScene, UIScrollViewDelegate
     var arrayOfStars = [SKShapeNode]()
     var starsOriginalXArray = [CGFloat]()
     var starsOriginalYArray = [CGFloat]()
+    
     var arrayOfStarsHit = [Bool]()
     var starsToRemove = Set<SKShapeNode>()
     
@@ -372,9 +371,9 @@ class GameScene: SKScene, UIScrollViewDelegate
         nodeOriginalXArray = []
         nodeOriginalYArray = []
         arrayOfStars = Array()
-        arrayOfStarsHit = []
         starsOriginalXArray = Array()
         starsOriginalYArray = Array()
+        arrayOfStarsHit = []
         
         self.createLevel(levelNumber: level)
     }
