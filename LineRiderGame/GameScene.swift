@@ -133,13 +133,11 @@ class GameScene: SKScene, UIScrollViewDelegate
             {
                 let ballTransparencyAnimation = SKAction.fadeOut(withDuration: 3)
                 
-                ball?.run(ballTransparencyAnimation)
-                
-                cleanLevel = true
-                
-                level += 1
-                
-                self.createLevel(levelNumber: level)
+                ball?.run(ballTransparencyAnimation, completion: {
+                    self.cleanLevel = true
+                    
+                    self.level += 1
+                })
             }
         }
     }
@@ -367,9 +365,12 @@ class GameScene: SKScene, UIScrollViewDelegate
         self.removeAllChildren()
         
         ball = nil
+        ballFlag = false
         
         arrayOfLines = Array()
         arrayOfNodes = Array()
+        nodeOriginalXArray = []
+        nodeOriginalYArray = []
         arrayOfStars = Array()
         arrayOfStarsHit = []
         starsOriginalXArray = Array()
@@ -386,7 +387,6 @@ class GameScene: SKScene, UIScrollViewDelegate
         var point = touch?.location(in: scrollView)
         point!.x = point!.x - ((self.view?.frame.width)! / 2) - scrollView!.contentOffset.x
         point!.y = (point!.y - ((self.view?.frame.height)! / 2)) * (-1) + scrollView!.contentOffset.y
-
         
         mutablePath = CGMutablePath()
         mutablePath.move(to: point!)
@@ -402,7 +402,6 @@ class GameScene: SKScene, UIScrollViewDelegate
         point!.x = point!.x - ((self.view?.frame.width)! / 2) - scrollView!.contentOffset.x
         point!.y = (point!.y - ((self.view?.frame.height)! / 2)) * (-1) + scrollView!.contentOffset.y
         
-
         mutablePath.addLine(to: point!)
         splineShapeNode.path = mutablePath
     }
