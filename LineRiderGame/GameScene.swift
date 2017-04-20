@@ -41,9 +41,9 @@ class GameScene: SKScene, UIScrollViewDelegate
     var insideBasketNodeOriginalX: CGFloat?
     var insideBasketNodeOriginalY: CGFloat?
     
-    var basket: SKShapeNode?
-    var basketNodeOriginalX: CGFloat?
-    var basketNodeOriginalY: CGFloat?
+    var outsideBasket: SKShapeNode?
+    var outsideBasketNodeOriginalX: CGFloat?
+    var outsideBasketNodeOriginalY: CGFloat?
     
     var hideScrollViewButton: UIButton?
     var hideScrollViewButtonOriginalX: CGFloat?
@@ -206,7 +206,7 @@ class GameScene: SKScene, UIScrollViewDelegate
     func createBasketBackBoard(withX x: CGFloat, withY y: CGFloat)
     {
         backBoard = SKShapeNode(rectOf: CGSize(width: 8, height: 80))
-        backBoard!.strokeColor = UIColor.clear
+        backBoard!.strokeColor = UIColor.purple
         backBoard!.position = CGPoint(x: x + 23, y: y)
         backBoard!.physicsBody = SKPhysicsBody(edgeChainFrom: backBoard!.path!)
         self.addChild(backBoard!)
@@ -217,32 +217,32 @@ class GameScene: SKScene, UIScrollViewDelegate
     func createBasketHoop(withX x: CGFloat, withY y: CGFloat)
     {
         let insideBasketBezierPath = UIBezierPath()
-        insideBasketBezierPath.move(to: CGPoint(x: -4.0, y: 15.0))
+        insideBasketBezierPath.move(to: CGPoint(x: -4.0, y: 10.0))
         insideBasketBezierPath.addLine(to: CGPoint(x: 0.0, y: 0.0))
         insideBasketBezierPath.addLine(to: CGPoint(x: 31.0, y: 0.0))
-        insideBasketBezierPath.addLine(to: CGPoint(x: 32.0, y: 15.0))
+        insideBasketBezierPath.addLine(to: CGPoint(x: 32.0, y: 10.0))
         
         insideBasket = SKShapeNode(path: insideBasketBezierPath.cgPath)
-        insideBasket!.strokeColor = UIColor.clear
+        insideBasket!.strokeColor = UIColor.red
         insideBasket!.position = CGPoint(x: x - 22, y: y - 41)
         insideBasket!.physicsBody = SKPhysicsBody(edgeChainFrom: insideBasket!.path!)
         self.addChild(insideBasket!)
         
         arrayOfNodes.append(insideBasket!)
         
-        let basketBezierPath = UIBezierPath()
-        basketBezierPath.move(to: CGPoint(x: -5.0, y: 18.0))
-        basketBezierPath.addLine(to: CGPoint(x: 0.0, y: 0.0))
-        basketBezierPath.addLine(to: CGPoint(x: 33.0, y: 0.0))
-        basketBezierPath.addLine(to: CGPoint(x: 35.0, y: 18.0))
+        let outsideBasketBezierPath = UIBezierPath()
+        outsideBasketBezierPath.move(to: CGPoint(x: -5.0, y: 18.0))
+        outsideBasketBezierPath.addLine(to: CGPoint(x: 0.0, y: 0.0))
+        outsideBasketBezierPath.addLine(to: CGPoint(x: 33.0, y: 0.0))
+        outsideBasketBezierPath.addLine(to: CGPoint(x: 35.0, y: 18.0))
         
-        basket = SKShapeNode(path: basketBezierPath.cgPath)
-        basket!.strokeColor = UIColor.clear
-        basket!.position = CGPoint(x: x - 23, y: y - 43)
-        basket!.physicsBody = SKPhysicsBody(edgeChainFrom: basket!.path!)
-        self.addChild(basket!)
+        outsideBasket = SKShapeNode(path: outsideBasketBezierPath.cgPath)
+        outsideBasket!.strokeColor = UIColor.black
+        outsideBasket!.position = CGPoint(x: x - 23, y: y - 43)
+        outsideBasket!.physicsBody = SKPhysicsBody(edgeChainFrom: outsideBasket!.path!)
+        self.addChild(outsideBasket!)
         
-        arrayOfNodes.append(basket!)
+        arrayOfNodes.append(outsideBasket!)
     }
     
     func setOriginalPositionsForStaticNodes()
@@ -256,11 +256,11 @@ class GameScene: SKScene, UIScrollViewDelegate
         nodeOriginalXArray.append(backBoard!.position.x)
         nodeOriginalYArray.append(backBoard!.position.y)
         
-        nodeOriginalXArray.append(basket!.position.x)
-        nodeOriginalYArray.append(basket!.position.y)
+        nodeOriginalXArray.append(outsideBasket!.position.x)
+        nodeOriginalYArray.append(outsideBasket!.position.y)
         
-        nodeOriginalXArray.append(basket!.position.x + 2)
-        nodeOriginalYArray.append(basket!.position.y + 2)
+        nodeOriginalXArray.append(outsideBasket!.position.x + 2)
+        nodeOriginalYArray.append(outsideBasket!.position.y + 2)
     }
     
     func createBall(withImage: String)
