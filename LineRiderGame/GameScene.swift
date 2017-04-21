@@ -6,6 +6,9 @@
 //  Copyright © 2017 KSG. All rights reserved.
 //
 
+
+//LINES ARE COLLIDING WITH BASKET IMAGE
+
 import SpriteKit
 import GameplayKit
 import UIKit
@@ -378,15 +381,14 @@ class GameScene: SKScene, UIScrollViewDelegate
         self.createLevel(levelNumber: level)
     }
     
+    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?)
     {
         splineShapeNode = nil
         
         let touch = touches.first
-        var point = touch?.location(in: scrollView)
-        point!.x = point!.x - ((self.view?.frame.width)! / 2) - scrollView!.contentOffset.x
-        point!.y = (point!.y - ((self.view?.frame.height)! / 2)) * (-1) + scrollView!.contentOffset.y
-        
+        var point = touch?.location(in: self.view)
+        point = self.convertPoint(fromView: point!)
         mutablePath = CGMutablePath()
         mutablePath.move(to: point!)
         splineShapeNode = SKShapeNode(path: mutablePath)
@@ -397,9 +399,8 @@ class GameScene: SKScene, UIScrollViewDelegate
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?)
     {
         let touch = touches.first
-        var point = touch?.location(in: scrollView)
-        point!.x = point!.x - ((self.view?.frame.width)! / 2) - scrollView!.contentOffset.x
-        point!.y = (point!.y - ((self.view?.frame.height)! / 2)) * (-1) + scrollView!.contentOffset.y
+        var point = touch?.location(in: self.view)
+        point = self.convertPoint(fromView: point!)
         
         mutablePath.addLine(to: point!)
         splineShapeNode.path = mutablePath
@@ -407,13 +408,13 @@ class GameScene: SKScene, UIScrollViewDelegate
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?)
     {
+     
         splineShapeNode.physicsBody = SKPhysicsBody(edgeChainFrom: splineShapeNode.path!)
         splineShapeNode.physicsBody?.affectedByGravity = false
         arrayOfLines.append(splineShapeNode)
         linesOriginalXArray.append(splineShapeNode.position.x + scrollView!.contentOffset.x)
         linesOriginalYArray.append(splineShapeNode.position.y - scrollView!.contentOffset.y)
         adjustContent(scrollView: scrollView!)
-       
     }
     
     func hideScrollView ()
