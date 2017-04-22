@@ -2,7 +2,7 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "ScrollButtonImage.png",
+      "filename" : "scrollingButton.png",
       "scale" : "1x"
     },
     {

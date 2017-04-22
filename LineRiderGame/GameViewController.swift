@@ -12,11 +12,14 @@ import GameplayKit
 
 class GameViewController: UIViewController
 {
+
+    
+    @IBOutlet var menuBar: UIView!
+    
     var gameScene: GameScene?
     
-    @IBOutlet var hideScrollView: UIButton!
 
-    @IBOutlet weak var scoreLabel: UILabel!
+    var scrollViewShowingToggle: Bool!
     
     
     override func viewDidLoad()
@@ -53,11 +56,12 @@ class GameViewController: UIViewController
                 }
             }
         }
-        gameScene?.scrollView?.addSubview(hideScrollView)
-        gameScene?.hideScrollViewButton = hideScrollView
-        
-        gameScene?.hideScrollViewButtonOriginalX = hideScrollView!.center.x
-        gameScene?.hideScrollViewButtonOriginalY = hideScrollView!.center.y
+        gameScene?.scrollView?.addSubview(menuBar)
+        scrollViewShowingToggle = false
+//        gameScene?.hideScrollViewButton = hideScrollView
+//        
+//        gameScene?.hideScrollViewButtonOriginalX = hideScrollView!.center.x
+//        gameScene?.hideScrollViewButtonOriginalY = hideScrollView!.center.y
 
     }
 
@@ -97,20 +101,29 @@ class GameViewController: UIViewController
     {
         gameScene!.ballFlag = false
         gameScene!.cleanLevel = true
+        self.view.addSubview(menuBar)
         //reset game state
     }
     
-    @IBAction func showScrollView(_ sender: UIButton) {
-        gameScene!.showScrollView()
+
+    @IBAction func scrollButtonTapped(_ sender: UIButton) {
+        if scrollViewShowingToggle {
+            self.view.addSubview(menuBar)
+            gameScene!.hideScrollView()
+        }
+        if !scrollViewShowingToggle {
+            self.gameScene?.scrollView?.addSubview(menuBar)
+            gameScene!.showScrollView()
+        }
     }
 
     
-    @IBAction func hideScrollView(_ sender: UIButton) {
+    @IBAction func drawButtonTapped(_ sender: UIButton) {
+        self.view.addSubview(menuBar)
         gameScene!.hideScrollView()
     }
-    
-}
 
+}
 
 
 

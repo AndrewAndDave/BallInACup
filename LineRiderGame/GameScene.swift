@@ -77,8 +77,8 @@ class GameScene: SKScene, UIScrollViewDelegate
     
     func adjustContent(scrollView: UIScrollView)
     {
-        hideScrollViewButton!.center.x = hideScrollViewButtonOriginalX! + scrollView.contentOffset.x
-        hideScrollViewButton!.center.y = hideScrollViewButtonOriginalY! + scrollView.contentOffset.y
+//        hideScrollViewButton!.center.x = hideScrollViewButtonOriginalX! + scrollView.contentOffset.x
+//        hideScrollViewButton!.center.y = hideScrollViewButtonOriginalY! + scrollView.contentOffset.y
         
         var i = 0
         for Node in arrayOfNodes
@@ -367,6 +367,7 @@ class GameScene: SKScene, UIScrollViewDelegate
     {
         self.removeAllChildren()
         
+        
         ball = nil
         ballFlag = false
         
@@ -409,7 +410,6 @@ class GameScene: SKScene, UIScrollViewDelegate
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?)
     {
-     
         splineShapeNode.physicsBody = SKPhysicsBody(edgeChainFrom: splineShapeNode.path!)
         splineShapeNode.physicsBody?.affectedByGravity = false
         arrayOfLines.append(splineShapeNode)
