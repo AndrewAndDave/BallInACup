@@ -30,6 +30,7 @@ class GameScene: SKScene, UIScrollViewDelegate
     var score: Int = 0
     
     var scrollView: UIScrollView?
+    var viewController: UIViewController?
     
     var hideScrollViewButton: UIButton?
     var hideScrollViewButtonOriginalX: CGFloat?

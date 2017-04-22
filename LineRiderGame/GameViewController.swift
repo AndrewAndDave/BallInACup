@@ -16,6 +16,7 @@ class GameViewController: UIViewController
     
     @IBOutlet var hideScrollView: UIButton!
 
+    @IBOutlet weak var scoreLabel: UILabel!
     
     
     override func viewDidLoad()
@@ -30,6 +31,7 @@ class GameViewController: UIViewController
             if let sceneNode = scene.rootNode as! GameScene?
             {
                 gameScene = sceneNode
+                gameScene!.viewController = self
                 
                 // Copy gameplay related content over to the scene
                 sceneNode.entities = scene.entities
