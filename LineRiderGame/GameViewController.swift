@@ -12,19 +12,33 @@ import GameplayKit
 
 class GameViewController: UIViewController
 {
-
-    
     @IBOutlet var menuBar: UIView!
     
-    var gameScene: GameScene?
+//ALL BUTTONS
+    @IBOutlet var playButton: UIButton!
+    
+    
+    @IBOutlet var drawButton: UIButton!
+    @IBOutlet var resetLevelButton: UIButton!
+    @IBOutlet var scrollButton: UIButton!
+    @IBOutlet var hideMenuButton: UIButton!
+    
+    
+    
+    var gameScene: GameScene!
+    var levelManager: LevelManager!
+    var menuBarHidden: Bool!
     
 
-    var scrollViewShowingToggle: Bool!
     
+    
+    var scrollViewShowingToggle: Bool!
     
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        
+        levelManager = LevelManager()
         
         // Load 'GameScene.sks' as a GKScene. This provides gameplay related content
         // including entities and graphs.
@@ -35,6 +49,7 @@ class GameViewController: UIViewController
             {
                 gameScene = sceneNode
                 gameScene!.viewController = self
+                gameScene.currentLevel = levelManager.currentLevel
                 
                 // Copy gameplay related content over to the scene
                 sceneNode.entities = scene.entities
@@ -56,13 +71,10 @@ class GameViewController: UIViewController
                 }
             }
         }
-        gameScene?.scrollView?.addSubview(menuBar)
+//        gameScene?.scrollView?.addSubview(menuBar)
+//        gameScene.menuBarPosition = menuBar.center
         scrollViewShowingToggle = false
-//        gameScene?.hideScrollViewButton = hideScrollView
-//        
-//        gameScene?.hideScrollViewButtonOriginalX = hideScrollView!.center.x
-//        gameScene?.hideScrollViewButtonOriginalY = hideScrollView!.center.y
-
+        menuBarHidden = false
     }
 
     override var shouldAutorotate: Bool
@@ -97,31 +109,53 @@ class GameViewController: UIViewController
     {
         gameScene!.createBall(withImage: "ball")
     }
+    
     @IBAction func resetLevel(_ sender: UIButton)
     {
         gameScene!.ballFlag = false
         gameScene!.cleanLevel = true
-        self.view.addSubview(menuBar)
+//        self.view.addSubview(menuBar)
         //reset game state
     }
     
-
-    @IBAction func scrollButtonTapped(_ sender: UIButton) {
-        if scrollViewShowingToggle {
-            self.view.addSubview(menuBar)
-            gameScene!.hideScrollView()
-        }
-        if !scrollViewShowingToggle {
-            self.gameScene?.scrollView?.addSubview(menuBar)
-            gameScene!.showScrollView()
-        }
+    @IBAction func scrollButtonTapped(_ sender: UIButton)
+    {
+        gameScene!.showScrollView()
     }
 
-    
-    @IBAction func drawButtonTapped(_ sender: UIButton) {
-        self.view.addSubview(menuBar)
+    @IBAction func drawButtonTapped(_ sender: UIButton)
+    {
         gameScene!.hideScrollView()
     }
+
+    @IBAction func hideMenuButtonTapped(_ sender: UIButton) {
+        if (menuBarHidden == false) {
+            drawButton.isHidden = true
+            resetLevelButton.isHidden = true
+            scrollButton.isHidden = true
+            
+            menuBarHidden = true
+            return
+        }
+        if (menuBarHidden == true) {
+            drawButton.isHidden = false
+            resetLevelButton.isHidden = false
+            scrollButton.isHidden = false
+            
+            menuBarHidden = false
+            return
+        }
+    }
+    
+    
+    //CREATE FUNCTION FOR TRANSITION TO LEVEL COMPLETE VIEW CONTROLLER
+    
+    func completeLevel() {
+        performSegue(withIdentifier: "Level Complete", sender: nil)
+        gameScene.currentLevel = levelManager.getNextLevel()
+        gameScene.cleanUpLevel()
+    }
+    
 
 }
 
