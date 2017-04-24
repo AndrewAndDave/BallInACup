@@ -156,9 +156,9 @@ class GameScene: SKScene, UIScrollViewDelegate
                 {
                     arrayOfStarsHit[count] = true
                     
-                    let starMoveUpAnimation = SKAction.move(to: CGPoint(x: starsOriginalXArray[count], y: starsOriginalYArray[count] + 10), duration: 1)
-                    let starMoveDownAnimation = SKAction.move(to: CGPoint(x: starsOriginalXArray[count], y: starsOriginalYArray[count]), duration: 1)
-                    let starTransparencyAnimation = SKAction.fadeOut(withDuration: 3)
+                    let starMoveUpAnimation = SKAction.move(to: CGPoint(x: starsOriginalXArray[count], y: starsOriginalYArray[count] + 10), duration: 0.5)
+                    let starMoveDownAnimation = SKAction.move(to: CGPoint(x: starsOriginalXArray[count], y: starsOriginalYArray[count]), duration: 0.5)
+                    let starTransparencyAnimation = SKAction.fadeOut(withDuration: 1)
                     
                     arrayOfStars[count].run(SKAction.sequence([starMoveUpAnimation, starMoveDownAnimation, starTransparencyAnimation]), completion:
                         {
