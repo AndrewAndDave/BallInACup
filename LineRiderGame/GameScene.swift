@@ -165,16 +165,11 @@ class GameScene: SKScene, UIScrollViewDelegate
                 
                 ball?.run(ballTransparencyAnimation, completion:
                     {
-                        //SEND A MESSAGE TO THE VC THAT THE LEVEL IS COMPLETE
                         self.level += 1
                         
                         self.totalScore += self.levelScore
                         
-//                        self.viewController.scoreLabel.text = "Total score: \(self.totalScore)"
-//                        
-//                        self.viewController.congratulationsView.isHidden = false
-                        
-                        self.viewController!.completeLevel()
+                        self.viewController?.completeLevel()
                     })
             }
         }
@@ -190,9 +185,9 @@ class GameScene: SKScene, UIScrollViewDelegate
                 {
                     arrayOfStarsHit[count] = true
                     
-                    let starMoveUpAnimation = SKAction.move(to: CGPoint(x: starsOriginalXArray[count], y: starsOriginalYArray[count] + 10), duration: 1)
-                    let starMoveDownAnimation = SKAction.move(to: CGPoint(x: starsOriginalXArray[count], y: starsOriginalYArray[count]), duration: 1)
-                    let starTransparencyAnimation = SKAction.fadeOut(withDuration: 3)
+                    let starMoveUpAnimation = SKAction.move(to: CGPoint(x: starsOriginalXArray[count], y: starsOriginalYArray[count] + 10), duration: 0.5)
+                    let starMoveDownAnimation = SKAction.move(to: CGPoint(x: starsOriginalXArray[count], y: starsOriginalYArray[count]), duration: 0.5)
+                    let starTransparencyAnimation = SKAction.fadeOut(withDuration: 1)
                     
                     arrayOfStars[count].run(SKAction.sequence([starMoveUpAnimation, starMoveDownAnimation, starTransparencyAnimation]), completion:
                         {

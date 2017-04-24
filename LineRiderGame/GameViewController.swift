@@ -34,6 +34,10 @@ class GameViewController: UIViewController
     
     var scrollViewShowingToggle: Bool!
     
+    @IBOutlet weak var congratulationsView: UIView!
+    
+    @IBOutlet weak var scoreLabel: UILabel!
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -157,6 +161,17 @@ class GameViewController: UIViewController
     }
     
 
+    @IBAction func nextLevel(_ sender: UIButton)
+    {
+        congratulationsView.isHidden = true
+        gameScene!.cleanLevel = true
+    }
+    
+//    func showCompleteLevelView(score: Int) {
+//        scoreLabel.text = String(score)
+//        congratulationsView.isHidden = false
+//        
+//    }
 }
 
 
