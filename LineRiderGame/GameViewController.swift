@@ -12,19 +12,22 @@ import GameplayKit
 
 class GameViewController: UIViewController
 {
-
-    
     @IBOutlet var menuBar: UIView!
     
     var gameScene: GameScene?
     
-
     var scrollViewShowingToggle: Bool!
     
+    @IBOutlet weak var congratulationsView: UIView!
+    
+    @IBOutlet weak var scoreLabel: UILabel!
     
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        
+        congratulationsView.layer.borderWidth = 1.0
+        congratulationsView.layer.borderColor = UIColor.red.cgColor
         
         // Load 'GameScene.sks' as a GKScene. This provides gameplay related content
         // including entities and graphs.
@@ -58,11 +61,6 @@ class GameViewController: UIViewController
         }
         gameScene?.scrollView?.addSubview(menuBar)
         scrollViewShowingToggle = false
-//        gameScene?.hideScrollViewButton = hideScrollView
-//        
-//        gameScene?.hideScrollViewButtonOriginalX = hideScrollView!.center.x
-//        gameScene?.hideScrollViewButtonOriginalY = hideScrollView!.center.y
-
     }
 
     override var shouldAutorotate: Bool
@@ -97,6 +95,7 @@ class GameViewController: UIViewController
     {
         gameScene!.createBall(withImage: "ball")
     }
+    
     @IBAction func resetLevel(_ sender: UIButton)
     {
         gameScene!.ballFlag = false
@@ -105,24 +104,38 @@ class GameViewController: UIViewController
         //reset game state
     }
     
-
-    @IBAction func scrollButtonTapped(_ sender: UIButton) {
-        if scrollViewShowingToggle {
+    @IBAction func scrollButtonTapped(_ sender: UIButton)
+    {
+        if scrollViewShowingToggle
+        {
             self.view.addSubview(menuBar)
             gameScene!.hideScrollView()
         }
-        if !scrollViewShowingToggle {
+        
+        if !scrollViewShowingToggle
+        {
             self.gameScene?.scrollView?.addSubview(menuBar)
             gameScene!.showScrollView()
         }
     }
 
-    
-    @IBAction func drawButtonTapped(_ sender: UIButton) {
+    @IBAction func drawButtonTapped(_ sender: UIButton)
+    {
         self.view.addSubview(menuBar)
         gameScene!.hideScrollView()
     }
 
+    @IBAction func nextLevel(_ sender: UIButton)
+    {
+        congratulationsView.isHidden = true
+        gameScene!.cleanLevel = true
+    }
+    
+    func showCompleteLevelView(score: Int) {
+        scoreLabel.text = String(score)
+        congratulationsView.isHidden = false
+        
+    }
 }
 
 

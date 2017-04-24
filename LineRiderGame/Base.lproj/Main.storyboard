@@ -61,37 +61,6 @@
                                     <action selector="playGame:" destination="BV1-FR-VrT" eventType="touchUpInside" id="LGh-Q3-QdL"/>
                                 </connections>
                             </button>
-<<<<<<< HEAD
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bhc-37-ci9">
-                                <rect key="frame" x="132" y="20" width="48" height="48"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Show Scroll View" image="ScrollButtonImage"/>
-                                <connections>
-                                    <action selector="showScrollView:" destination="BV1-FR-VrT" eventType="touchUpInside" id="SEO-Au-c8z"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xSK-hC-C1x">
-                                <rect key="frame" x="132" y="20" width="48" height="48"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="pencilImage"/>
-                                <connections>
-                                    <action selector="hideScrollView:" destination="BV1-FR-VrT" eventType="touchUpInside" id="3NM-EH-qrW"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="score:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ws6-2k-PKu">
-                                <rect key="frame" x="557" y="20" width="90" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <connections>
-                        <outlet property="hideScrollView" destination="xSK-hC-C1x" id="V5S-gG-iou"/>
-                        <outlet property="scoreLabel" destination="Ws6-2k-PKu" id="i3V-Xs-PPd"/>
-=======
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ImC-FT-pMb">
                                 <rect key="frame" x="586" y="84" width="75" height="275"/>
                                 <subviews>
@@ -148,8 +117,37 @@
                                     <constraint firstItem="9wX-DW-ALa" firstAttribute="width" secondItem="ND3-w5-Cf4" secondAttribute="width" id="pFS-jq-7TL"/>
                                 </constraints>
                             </view>
+                            <view hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="i0L-c0-fqY">
+                                <rect key="frame" x="213" y="123" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Congratulations!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j0z-hP-QTa">
+                                        <rect key="frame" x="8" y="8" width="224" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Total score:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mBE-Bu-C99">
+                                        <rect key="frame" x="8" y="54" width="224" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lTJ-b4-S47">
+                                        <rect key="frame" x="86" y="90" width="68" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Next level"/>
+                                        <connections>
+                                            <action selector="nextLevel:" destination="BV1-FR-VrT" eventType="touchUpInside" id="zWX-ju-pEg"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
-                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="ImC-FT-pMb" firstAttribute="centerX" secondItem="KFS-jA-KDq" secondAttribute="centerX" id="BhA-bi-0wy"/>
                             <constraint firstItem="xSK-hC-C1x" firstAttribute="width" secondItem="KFS-jA-KDq" secondAttribute="width" id="FIy-5G-1KC"/>
@@ -160,17 +158,14 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="congratulationsView" destination="i0L-c0-fqY" id="LUc-nX-guG"/>
                         <outlet property="menuBar" destination="ImC-FT-pMb" id="Ypk-2w-kRo"/>
->>>>>>> 937ad5ca41299e250c41568f592cbe019236e46c
+                        <outlet property="scoreLabel" destination="mBE-Bu-C99" id="sTW-MZ-Gqo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
             </objects>
-<<<<<<< HEAD
-            <point key="canvasLocation" x="173.16341829085459" y="172"/>
-=======
             <point key="canvasLocation" x="171.36431784107947" y="160.80000000000001"/>
->>>>>>> 937ad5ca41299e250c41568f592cbe019236e46c
         </scene>
     </scenes>
     <resources>

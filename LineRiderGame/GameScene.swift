@@ -27,10 +27,11 @@ class GameScene: SKScene, UIScrollViewDelegate
     
     var ballFlag: Bool = false
     var level: Int = 0
-    var score: Int = 0
+    var levelScore: Int = 0
+    var totalScore: Int = 0
     
     var scrollView: UIScrollView?
-    var viewController: UIViewController?
+    var viewController: GameViewController?
     
     var hideScrollViewButton: UIButton?
     var hideScrollViewButtonOriginalX: CGFloat?
@@ -77,9 +78,6 @@ class GameScene: SKScene, UIScrollViewDelegate
     
     func adjustContent(scrollView: UIScrollView)
     {
-//        hideScrollViewButton!.center.x = hideScrollViewButtonOriginalX! + scrollView.contentOffset.x
-//        hideScrollViewButton!.center.y = hideScrollViewButtonOriginalY! + scrollView.contentOffset.y
-        
         var i = 0
         for Node in arrayOfNodes
         {
@@ -136,11 +134,14 @@ class GameScene: SKScene, UIScrollViewDelegate
             {
                 let ballTransparencyAnimation = SKAction.fadeOut(withDuration: 3)
                 
-                ball?.run(ballTransparencyAnimation, completion: {
-                    self.cleanLevel = true
-                    
-                    self.level += 1
-                })
+                ball?.run(ballTransparencyAnimation, completion:
+                    {
+                        self.level += 1
+                        
+                        self.totalScore += self.levelScore
+                        
+                        self.viewController?.showCompleteLevelView(score: self.totalScore)
+                    })
             }
         }
     }
@@ -163,7 +164,7 @@ class GameScene: SKScene, UIScrollViewDelegate
                         {
                             self.starsToRemove.update(with: self.arrayOfStars[count])
                             
-                            self.score += 10
+                            self.levelScore += 10
                         })
                 }
             }
@@ -367,6 +368,7 @@ class GameScene: SKScene, UIScrollViewDelegate
     {
         self.removeAllChildren()
         
+        levelScore = 0
         
         ball = nil
         ballFlag = false
