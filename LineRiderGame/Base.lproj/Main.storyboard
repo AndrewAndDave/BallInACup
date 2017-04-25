@@ -26,7 +26,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="of6-Qn-ovO">
-                                <rect key="frame" x="288" y="204" width="90" height="40"/>
+                                <rect key="frame" x="285" y="201" width="96" height="46"/>
                                 <state key="normal" image="playGameButtonImage"/>
                                 <connections>
                                     <action selector="startCurrentLevel:" destination="OQV-I8-ZNk" eventType="touchUpInside" id="Whx-iR-QFH"/>
@@ -133,7 +133,7 @@
                         <outlet property="playButton" destination="KFS-jA-KDq" id="brd-jp-UWS"/>
                         <outlet property="resetLevelButton" destination="ND3-w5-Cf4" id="rDb-Pd-IRS"/>
                         <outlet property="scrollButton" destination="bhc-37-ci9" id="Ykq-rQ-ckJ"/>
-                        <segue destination="gK1-36-w4v" kind="presentation" identifier="Level Complete" id="8RI-js-evU"/>
+                        <segue destination="gK1-36-w4v" kind="presentation" identifier="Level Complete" modalTransitionStyle="crossDissolve" id="8RI-js-evU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
@@ -156,6 +156,15 @@
                                 <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
+                            <visualEffectView opaque="NO" alpha="0.55000000000000004" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mHm-62-gL8">
+                                <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" id="NGx-VI-vnT">
+                                    <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                </view>
+                                <blurEffect style="light"/>
+                            </visualEffectView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="congratualtionsBackgroundImage" translatesAutoresizingMaskIntoConstraints="NO" id="cun-yt-5ht">
                                 <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -175,7 +184,7 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lTJ-b4-S47">
-                                <rect key="frame" x="288" y="275" width="90" height="40"/>
+                                <rect key="frame" x="288" y="274" width="90" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <state key="normal" title="Next level" image="nextLevelButtonImage">
@@ -201,12 +210,12 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Group 1 Background" width="1000" height="1000"/>
+        <image name="Group 1 Background" width="1500" height="1500"/>
         <image name="congratualtionsBackgroundImage" width="667" height="375"/>
-        <image name="nextLevelButtonImage" width="90" height="40"/>
+        <image name="nextLevelButtonImage" width="96" height="46"/>
         <image name="pencilImage" width="250" height="250"/>
         <image name="play" width="48" height="48"/>
-        <image name="playGameButtonImage" width="90" height="40"/>
+        <image name="playGameButtonImage" width="96" height="46"/>
         <image name="reload" width="48" height="48"/>
         <image name="scrollingButton" width="250" height="250"/>
         <image name="titleImage" width="372" height="101"/>
