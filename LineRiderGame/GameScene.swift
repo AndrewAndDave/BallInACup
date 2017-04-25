@@ -27,13 +27,13 @@ class GameScene: SKScene, UIScrollViewDelegate
     
     var ballFlag: Bool = false
     var level: Int = 0
-    var levelScore: Int = 0
-    var totalScore: Int = 0
+    
+    var totalStars: Int = 0
+    var collectedStars: Int = 0
     
     var scrollView: UIScrollView?
     var viewController: GameViewController!
     var currentLevel: Level!
-    
     
     var hideScrollViewButton: UIButton?
     var hideScrollViewButtonOriginalX: CGFloat?
@@ -80,11 +80,11 @@ class GameScene: SKScene, UIScrollViewDelegate
         adjustContent(scrollView: scrollView)
     }
     
-    
     func createLevel(level: Level)
     {
-        if self.scrollView?.isHidden != true {
-        self.scrollView = setUpScrollView(withContentSize: level.contentSizeWidth!, andHeight: level.contentSizeHeight!)
+        if self.scrollView?.isHidden != true
+        {
+            self.scrollView = setUpScrollView(withContentSize: level.contentSizeWidth!, andHeight: level.contentSizeHeight!)
         }
         self.createSpawnMarker(withX: level.spawnMarkerX!, withY: level.spawnMarkerY!)
         self.createBasket(withImage: "basket", withX: level.basketX!, withY: level.basketY!)
@@ -100,7 +100,6 @@ class GameScene: SKScene, UIScrollViewDelegate
         scrollView.contentSize.height = andHeight
         scrollView.delegate = self
         self.view?.addSubview(scrollView)
-//        scrollView.addSubview(viewController.menuBar)
         self.view?.addSubview(viewController.menuBar)
         
         return scrollView
@@ -167,9 +166,7 @@ class GameScene: SKScene, UIScrollViewDelegate
                     {
                         self.level += 1
                         
-                        self.totalScore += self.levelScore
-                        
-                        self.viewController?.completeLevel()
+                        self.viewController?.completeLevel(totalStars: self.totalStars, collectedStars: self.collectedStars)
                     })
             }
         }
@@ -193,16 +190,13 @@ class GameScene: SKScene, UIScrollViewDelegate
                         {
                             self.starsToRemove.update(with: self.arrayOfStars[count])
                             
-                            self.levelScore += 10
+                            self.collectedStars += 1
                         })
                 }
             }
         }
     }
-    
-//    func createLevel(levelNumber level: Int)
 
-    
     func createSpawnMarker(withX x: CGFloat, withY y: CGFloat)
     {
         let textureSpawn: SKTexture! = SKTexture(imageNamed: "spawn")
@@ -219,6 +213,8 @@ class GameScene: SKScene, UIScrollViewDelegate
     
     func createStarsMarker(withStars stars: [(x: CGFloat, y: CGFloat)])
     {
+        totalStars = stars.count
+        
         for star in stars
         {
             let textureStar: SKTexture! = SKTexture(imageNamed: "Star")
@@ -318,8 +314,6 @@ class GameScene: SKScene, UIScrollViewDelegate
         
     }
     
-
-    
     func createBall(withImage: String)
     {
         if !self.ballFlag
@@ -363,7 +357,8 @@ class GameScene: SKScene, UIScrollViewDelegate
     {
         self.removeAllChildren()
         
-        levelScore = 0
+        totalStars = 0
+        collectedStars = 0
         
         ball = nil
         ballFlag = false
@@ -417,22 +412,15 @@ class GameScene: SKScene, UIScrollViewDelegate
     
     func hideScrollView ()
     {
-        
         self.scrollView?.isHidden = true
-//        viewController.menuBar.center.x = (menuBarPosition?.x)! + (scrollView?.contentOffset.x)!
-//        viewController.menuBar.center.y = (menuBarPosition?.y)! + (scrollView?.contentOffset.y)!
-//        self.viewController.view.addSubview(viewController.menuBar)
-
-
         
         viewController.scrollViewShowingToggle = false
-        
     }
     
     func showScrollView ()
     {
         self.scrollView?.isHidden = false
-//        scrollView?.addSubview(viewController.menuBar)
+        
         viewController.scrollViewShowingToggle = true
     }
     

@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		495513BA1EAEC6B100899445 /* LevelCompletedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495513B71EAEC6B100899445 /* LevelCompletedViewController.swift */; };
+		495513BB1EAEC6B100899445 /* LevelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495513B81EAEC6B100899445 /* LevelManager.swift */; };
+		495513BC1EAEC6B100899445 /* MainScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495513B91EAEC6B100899445 /* MainScreenViewController.swift */; };
 		4997C0671EA509960004C9DD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4997C0661EA509960004C9DD /* AppDelegate.swift */; };
 		4997C0691EA509970004C9DD /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 4997C0681EA509970004C9DD /* GameScene.sks */; };
 		4997C06B1EA509970004C9DD /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = 4997C06A1EA509970004C9DD /* Actions.sks */; };
@@ -15,12 +18,12 @@
 		4997C0721EA509970004C9DD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4997C0701EA509970004C9DD /* Main.storyboard */; };
 		4997C0741EA509970004C9DD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4997C0731EA509970004C9DD /* Assets.xcassets */; };
 		4997C0771EA509970004C9DD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4997C0751EA509970004C9DD /* LaunchScreen.storyboard */; };
-		76AEBFB31EAC0DA900FB5939 /* LevelCompletedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76AEBFB21EAC0DA900FB5939 /* LevelCompletedViewController.swift */; };
-		76AEBFB51EACE20800FB5939 /* MainScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76AEBFB41EACE20800FB5939 /* MainScreenViewController.swift */; };
-		76AEBFB71EACEE4400FB5939 /* LevelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76AEBFB61EACEE4400FB5939 /* LevelManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		495513B71EAEC6B100899445 /* LevelCompletedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelCompletedViewController.swift; sourceTree = "<group>"; };
+		495513B81EAEC6B100899445 /* LevelManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelManager.swift; sourceTree = "<group>"; };
+		495513B91EAEC6B100899445 /* MainScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainScreenViewController.swift; sourceTree = "<group>"; };
 		4997C0631EA509960004C9DD /* LineRiderGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LineRiderGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4997C0661EA509960004C9DD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4997C0681EA509970004C9DD /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -31,9 +34,6 @@
 		4997C0731EA509970004C9DD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4997C0761EA509970004C9DD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4997C0781EA509970004C9DD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		76AEBFB21EAC0DA900FB5939 /* LevelCompletedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LevelCompletedViewController.swift; path = ../LevelCompletedViewController.swift; sourceTree = "<group>"; };
-		76AEBFB41EACE20800FB5939 /* MainScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainScreenViewController.swift; sourceTree = "<group>"; };
-		76AEBFB61EACEE4400FB5939 /* LevelManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LevelManager.swift; path = ../LevelManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -50,7 +50,6 @@
 		4997C05A1EA509960004C9DD = {
 			isa = PBXGroup;
 			children = (
-				76AEBFB41EACE20800FB5939 /* MainScreenViewController.swift */,
 				4997C0651EA509960004C9DD /* LineRiderGame */,
 				4997C0641EA509960004C9DD /* Products */,
 			);
@@ -67,9 +66,10 @@
 		4997C0651EA509960004C9DD /* LineRiderGame */ = {
 			isa = PBXGroup;
 			children = (
-				76AEBFB61EACEE4400FB5939 /* LevelManager.swift */,
+				495513B71EAEC6B100899445 /* LevelCompletedViewController.swift */,
+				495513B81EAEC6B100899445 /* LevelManager.swift */,
+				495513B91EAEC6B100899445 /* MainScreenViewController.swift */,
 				4997C06C1EA509970004C9DD /* GameScene.swift */,
-				76AEBFB21EAC0DA900FB5939 /* LevelCompletedViewController.swift */,
 				4997C06E1EA509970004C9DD /* GameViewController.swift */,
 				4997C0701EA509970004C9DD /* Main.storyboard */,
 				4997C0731EA509970004C9DD /* Assets.xcassets */,
@@ -156,12 +156,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				76AEBFB51EACE20800FB5939 /* MainScreenViewController.swift in Sources */,
 				4997C06D1EA509970004C9DD /* GameScene.swift in Sources */,
-				76AEBFB31EAC0DA900FB5939 /* LevelCompletedViewController.swift in Sources */,
+				495513BA1EAEC6B100899445 /* LevelCompletedViewController.swift in Sources */,
 				4997C06F1EA509970004C9DD /* GameViewController.swift in Sources */,
-				76AEBFB71EACEE4400FB5939 /* LevelManager.swift in Sources */,
+				495513BB1EAEC6B100899445 /* LevelManager.swift in Sources */,
 				4997C0671EA509960004C9DD /* AppDelegate.swift in Sources */,
+				495513BC1EAEC6B100899445 /* MainScreenViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -14,29 +14,21 @@ class GameViewController: UIViewController
 {
     @IBOutlet var menuBar: UIView!
     
-//ALL BUTTONS
     @IBOutlet var playButton: UIButton!
-    
     
     @IBOutlet var drawButton: UIButton!
     @IBOutlet var resetLevelButton: UIButton!
     @IBOutlet var scrollButton: UIButton!
     @IBOutlet var hideMenuButton: UIButton!
     
-    
-    
     var gameScene: GameScene!
     var levelManager: LevelManager!
     var menuBarHidden: Bool!
-    
 
-    
-    
     var scrollViewShowingToggle: Bool!
     
-    @IBOutlet weak var congratulationsView: UIView!
-    
-    @IBOutlet weak var scoreLabel: UILabel!
+    var totalStars: Int = 0
+    var collectedStars: Int = 0
     
     override func viewDidLoad()
     {
@@ -75,8 +67,6 @@ class GameViewController: UIViewController
                 }
             }
         }
-//        gameScene?.scrollView?.addSubview(menuBar)
-//        gameScene.menuBarPosition = menuBar.center
         scrollViewShowingToggle = false
         menuBarHidden = false
     }
@@ -118,8 +108,6 @@ class GameViewController: UIViewController
     {
         gameScene!.ballFlag = false
         gameScene!.cleanLevel = true
-//        self.view.addSubview(menuBar)
-        //reset game state
     }
     
     @IBAction func scrollButtonTapped(_ sender: UIButton)
@@ -132,8 +120,10 @@ class GameViewController: UIViewController
         gameScene!.hideScrollView()
     }
 
-    @IBAction func hideMenuButtonTapped(_ sender: UIButton) {
-        if (menuBarHidden == false) {
+    @IBAction func hideMenuButtonTapped(_ sender: UIButton)
+    {
+        if (menuBarHidden == false)
+        {
             drawButton.isHidden = true
             resetLevelButton.isHidden = true
             scrollButton.isHidden = true
@@ -141,7 +131,9 @@ class GameViewController: UIViewController
             menuBarHidden = true
             return
         }
-        if (menuBarHidden == true) {
+        
+        if (menuBarHidden == true)
+        {
             drawButton.isHidden = false
             resetLevelButton.isHidden = false
             scrollButton.isHidden = false
@@ -151,27 +143,26 @@ class GameViewController: UIViewController
         }
     }
     
-    
-    //CREATE FUNCTION FOR TRANSITION TO LEVEL COMPLETE VIEW CONTROLLER
-    
-    func completeLevel() {
+    func completeLevel(totalStars: Int, collectedStars: Int)
+    {
+        self.totalStars = totalStars
+        self.collectedStars = collectedStars
+        
         performSegue(withIdentifier: "Level Complete", sender: nil)
         gameScene.currentLevel = levelManager.getNextLevel()
         gameScene.cleanUpLevel()
     }
     
-
-    @IBAction func nextLevel(_ sender: UIButton)
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
     {
-        congratulationsView.isHidden = true
-        gameScene!.cleanLevel = true
+        if(segue.identifier == "Level Complete")
+        {
+            let levelComplete = (segue.destination as! LevelCompleteViewController)
+            
+            levelComplete.totalStars = self.totalStars
+            levelComplete.collectedStars = self.collectedStars
+        }
     }
-    
-//    func showCompleteLevelView(score: Int) {
-//        scoreLabel.text = String(score)
-//        congratulationsView.isHidden = false
-//        
-//    }
 }
 
 

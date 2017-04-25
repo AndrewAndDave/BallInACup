@@ -9,33 +9,35 @@
 import Foundation
 import UIKit
 
-class LevelManager {
-    
+class LevelManager
+{    
     var currentLevel: Level?
     var levelSelected: Int!
     
     var highestLevel: Int!
 
-    init() {
-        if highestLevel == nil {
+    init()
+    {
+        if highestLevel == nil
+        {
             highestLevel = 1
         }
         
-        if levelSelected == nil {
+        if levelSelected == nil
+        {
             levelSelected = 0
         }
         currentLevel = getNextLevel()
-        
     }
 
-    func getNextLevel() -> (Level) {
-        
+    func getNextLevel() -> (Level)
+    {
          let level = Level()
+        
         levelSelected = levelSelected + 1
         
-//PASS THE NECESSARY VALUES AS ARGUMENTS INTO A CUSTOM INITIALIZER FOR THE LEVEL
-        
-        switch levelSelected {
+        switch levelSelected
+        {
             
         case 1:
             
@@ -52,34 +54,13 @@ class LevelManager {
             
             level.contentSizeWidth = 1000
             level.contentSizeHeight = 1000
-            level.spawnMarkerX = 1
-            level.spawnMarkerY = 1
-            level.basketX = 1
-            level.basketY = 1
+            level.spawnMarkerX = -292
+            level.spawnMarkerY = 120
+            level.basketX = 100
+            level.basketY = -100
             level.stars = [(x: -263, y: 34),(x: -318, y: -33),(x: -138, -84)]
             
             break
-            
-            //        switch(level)
-            //        {
-            //        case 0:
-            //            if self.scrollView?.isHidden != true
-            //            {
-            //                self.scrollView = setUpScrollView(withContentSize: 1000, andHeight: 1000)
-            //            }
-            //            self.createSpawnMarker(withX: -292, withY: 120)
-            //            self.createBasket(withImage: "basket", withX: 100, withY: 0)
-            //
-            //        case 1:
-            //            if self.scrollView?.isHidden != true
-            //            {
-            //                self.scrollView = setUpScrollView(withContentSize: 1000, andHeight: 1000)
-            //            }
-            
-            //
-            //        default:
-            //            break
-            //        }
             
         case 3:
             
@@ -122,7 +103,8 @@ class LevelManager {
 //PASS THE NECESSARY VALUES AS ARGUMENTS INTO A CUSTOM INITIALIZER FOR THE LEVEL
 //THE LEVEL SHOULD BE PASSED AROUND WITH ANY INFORMATION NECESSARY TO BE HELD ABOUT THE CURRENT LEVEL
 //HAVE TO MAKE SURE THAT THERE IS NO MEMORY LEAK
-class Level {
+class Level
+{
     var contentSizeWidth: CGFloat?
     var contentSizeHeight: CGFloat?
     
@@ -133,6 +115,4 @@ class Level {
     var basketY: CGFloat?
     
     var stars: [(x: CGFloat, y: CGFloat)] = []
-
-
 }
