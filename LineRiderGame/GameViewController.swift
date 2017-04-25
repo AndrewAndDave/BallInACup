@@ -149,8 +149,6 @@ class GameViewController: UIViewController
         self.collectedStars = collectedStars
         
         performSegue(withIdentifier: "Level Complete", sender: nil)
-        gameScene.currentLevel = levelManager.getNextLevel()
-        gameScene.cleanUpLevel()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
@@ -159,6 +157,8 @@ class GameViewController: UIViewController
         {
             let levelComplete = (segue.destination as! LevelCompleteViewController)
             
+            levelComplete.gameScene = self.gameScene
+            levelComplete.levelManager = self.levelManager
             levelComplete.totalStars = self.totalStars
             levelComplete.collectedStars = self.collectedStars
         }

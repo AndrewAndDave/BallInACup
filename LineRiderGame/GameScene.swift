@@ -86,6 +86,8 @@ class GameScene: SKScene, UIScrollViewDelegate
         {
             self.scrollView = setUpScrollView(withContentSize: level.contentSizeWidth!, andHeight: level.contentSizeHeight!)
         }
+        
+        self.createBackground(imageName: level.imageName!)
         self.createSpawnMarker(withX: level.spawnMarkerX!, withY: level.spawnMarkerY!)
         self.createBasket(withImage: "basket", withX: level.basketX!, withY: level.basketY!)
         self.createStarsMarker(withStars: level.stars)
@@ -197,6 +199,16 @@ class GameScene: SKScene, UIScrollViewDelegate
         }
     }
 
+    func createBackground(imageName: String)
+    {
+        let background = SKSpriteNode(imageNamed: imageName)
+        
+        background.position = CGPoint(x: 0, y: 0)
+        background.zPosition = -1
+        
+        self.addChild(background)
+    }
+    
     func createSpawnMarker(withX x: CGFloat, withY y: CGFloat)
     {
         let textureSpawn: SKTexture! = SKTexture(imageNamed: "spawn")
@@ -205,6 +217,7 @@ class GameScene: SKScene, UIScrollViewDelegate
         spawnImage = SKShapeNode(rectOf: spawnSize)
         spawnImage!.fillTexture = textureSpawn
         spawnImage!.fillColor = SKColor.white
+        spawnImage!.lineWidth = 0.0
         spawnImage!.position = CGPoint(x: x, y: y)
         self.addChild(spawnImage!)
         

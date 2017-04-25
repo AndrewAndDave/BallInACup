@@ -14,6 +14,9 @@ class LevelCompleteViewController: UIViewController {
     @IBOutlet var congratulationsView: UIView!
     @IBOutlet var scoreLabel: UILabel!
 
+    var gameScene: GameScene!
+    var levelManager: LevelManager!
+    
     var totalStars: Int = 0
     var collectedStars: Int = 0
     
@@ -80,6 +83,9 @@ class LevelCompleteViewController: UIViewController {
     
     @IBAction func nextLevel(_ sender: UIButton)
     {
+        gameScene.currentLevel = levelManager.getNextLevel()
+        gameScene.cleanUpLevel()
+        
         self.dismiss(animated: true, completion: nil)
     }
 }

@@ -43,6 +43,7 @@ class LevelManager
             
             level.contentSizeWidth = 1000
             level.contentSizeHeight = 1000
+            level.imageName = "Group 1 Background"
             level.spawnMarkerX = -292
             level.spawnMarkerY = 120
             level.basketX = 100
@@ -54,6 +55,7 @@ class LevelManager
             
             level.contentSizeWidth = 1000
             level.contentSizeHeight = 1000
+            level.imageName = "Group 1 Background"
             level.spawnMarkerX = -292
             level.spawnMarkerY = 120
             level.basketX = 100
@@ -107,6 +109,8 @@ class Level
 {
     var contentSizeWidth: CGFloat?
     var contentSizeHeight: CGFloat?
+    
+    var imageName: String?
     
     var spawnMarkerX: CGFloat?
     var spawnMarkerY: CGFloat?
