@@ -188,7 +188,6 @@
                     </view>
                     <connections>
                         <outlet property="congratulationsView" destination="i0L-c0-fqY" id="e8H-fA-wqg"/>
-                        <outlet property="nextLevelButton" destination="lTJ-b4-S47" id="U13-zm-Wtr"/>
                         <outlet property="scoreLabel" destination="mBE-Bu-C99" id="PQF-wa-KuQ"/>
                     </connections>
                 </viewController>
@@ -208,6 +207,6 @@
         <image name="scrollingButton" width="250" height="250"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="q1I-uS-uRd"/>
+        <segue reference="O4v-ds-Cax"/>
     </inferredMetricsTieBreakers>
 </document>
