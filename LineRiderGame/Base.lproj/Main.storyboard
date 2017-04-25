@@ -33,6 +33,10 @@
                                     <segue destination="BV1-FR-VrT" kind="show" identifier="StartGame" id="q1I-uS-uRd"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="titleImage" translatesAutoresizingMaskIntoConstraints="NO" id="fZQ-XL-DLb">
+                                <rect key="frame" x="184" y="42" width="298" height="91"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -205,6 +209,7 @@
         <image name="playGameButtonImage" width="90" height="40"/>
         <image name="reload" width="48" height="48"/>
         <image name="scrollingButton" width="250" height="250"/>
+        <image name="titleImage" width="372" height="101"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="O4v-ds-Cax"/>
