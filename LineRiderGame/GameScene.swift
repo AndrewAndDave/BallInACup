@@ -47,7 +47,7 @@ class GameScene: SKScene, UIScrollViewDelegate
     var outsideBasket: SKShapeNode?
     var slantedBasketWall: SKShapeNode?
     
-    var arrayOfNodes = [SKShapeNode]()
+    var arrayOfNodes = [SKNode]()
     var nodeOriginalXArray = [CGFloat]()
     var nodeOriginalYArray = [CGFloat]()
     
@@ -214,11 +214,17 @@ class GameScene: SKScene, UIScrollViewDelegate
     func createBackground(imageName: String)
     {
         let background = SKSpriteNode(imageNamed: imageName)
+        var point = self.view!.frame.origin
+        point = self.convertPoint(fromView: point)
         
-        background.position = CGPoint(x: 0, y: 0)
+        background.position = point
+        background.anchorPoint = CGPoint(x: 0, y: 1)
         background.zPosition = -1
         
+        
         self.addChild(background)
+        
+        arrayOfNodes.append(background)
     }
     
     func createSpawnMarker(withX x: CGFloat, withY y: CGFloat)
@@ -439,7 +445,6 @@ class GameScene: SKScene, UIScrollViewDelegate
     func hideScrollView ()
     {
         self.scrollView?.isHidden = true
-        
         viewController.scrollViewShowingToggle = false
     }
     
