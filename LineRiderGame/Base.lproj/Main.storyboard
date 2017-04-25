@@ -21,9 +21,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="of6-Qn-ovO">
-                                <rect key="frame" x="318" y="172" width="30" height="30"/>
-                                <state key="normal" title="Play"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Group 1 Background" translatesAutoresizingMaskIntoConstraints="NO" id="miB-FP-ROe">
+                                <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="of6-Qn-ovO">
+                                <rect key="frame" x="288" y="204" width="90" height="40"/>
+                                <state key="normal" image="playGameButtonImage"/>
                                 <connections>
                                     <action selector="startCurrentLevel:" destination="OQV-I8-ZNk" eventType="touchUpInside" id="Whx-iR-QFH"/>
                                     <segue destination="BV1-FR-VrT" kind="show" identifier="StartGame" id="q1I-uS-uRd"/>
@@ -33,7 +37,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="of6-Qn-ovO" firstAttribute="centerX" secondItem="KpQ-rr-nLB" secondAttribute="centerX" id="I80-lG-wvM"/>
-                            <constraint firstItem="of6-Qn-ovO" firstAttribute="centerY" secondItem="KpQ-rr-nLB" secondAttribute="centerY" id="bZL-lc-MVO"/>
+                            <constraint firstItem="of6-Qn-ovO" firstAttribute="centerY" secondItem="KpQ-rr-nLB" secondAttribute="centerY" constant="36.5" id="bZL-lc-MVO"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -199,10 +203,11 @@
         <image name="nextLevelButtonImage" width="90" height="40"/>
         <image name="pencilImage" width="250" height="250"/>
         <image name="play" width="48" height="48"/>
+        <image name="playGameButtonImage" width="90" height="40"/>
         <image name="reload" width="48" height="48"/>
         <image name="scrollingButton" width="250" height="250"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="O4v-ds-Cax"/>
+        <segue reference="q1I-uS-uRd"/>
     </inferredMetricsTieBreakers>
 </document>
