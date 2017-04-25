@@ -133,7 +133,7 @@
                         <outlet property="playButton" destination="KFS-jA-KDq" id="brd-jp-UWS"/>
                         <outlet property="resetLevelButton" destination="ND3-w5-Cf4" id="rDb-Pd-IRS"/>
                         <outlet property="scrollButton" destination="bhc-37-ci9" id="Ykq-rQ-ckJ"/>
-                        <segue destination="gK1-36-w4v" kind="presentation" identifier="Level Complete" modalTransitionStyle="crossDissolve" id="8RI-js-evU"/>
+                        <segue destination="gK1-36-w4v" kind="presentation" identifier="Level Complete" modalTransitionStyle="partialCurl" id="8RI-js-evU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
@@ -156,7 +156,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <visualEffectView opaque="NO" alpha="0.55000000000000004" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mHm-62-gL8">
+                            <visualEffectView opaque="NO" alpha="0.75" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mHm-62-gL8">
                                 <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" id="NGx-VI-vnT">
@@ -183,14 +183,10 @@
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lTJ-b4-S47">
+                            <button contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lTJ-b4-S47">
                                 <rect key="frame" x="288" y="274" width="90" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <state key="normal" title="Next level" image="nextLevelButtonImage">
-                                    <color key="titleColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                    <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                </state>
+                                <state key="normal" title="Next level" image="nextLevelButtonImage"/>
                                 <connections>
                                     <action selector="nextLevel:" destination="gK1-36-w4v" eventType="touchUpInside" id="WcD-e3-kgD"/>
                                     <segue destination="BV1-FR-VrT" kind="presentation" identifier="NextLevel" id="O4v-ds-Cax"/>
