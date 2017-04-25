@@ -23,7 +23,7 @@ class GameScene: SKScene, UIScrollViewDelegate
     
     var cleanLevel = false
     
-    var ball: SKShapeNode?
+    var ball: SKSpriteNode?
     
     var ballFlag: Bool = false
 //    var level: Int = 0
@@ -359,16 +359,17 @@ class GameScene: SKScene, UIScrollViewDelegate
         let textureBall : SKTexture! = SKTexture(imageNamed: image)
         let ballSize: CGSize = textureBall.size()
         
-        ball = SKShapeNode(circleOfRadius: ballSize.width / 2)
-        ball!.fillTexture = textureBall
-        ball!.fillColor = SKColor.white
-        ball!.strokeColor = SKColor.clear
+        ball = SKSpriteNode(texture: textureBall)
         ball!.position = (spawnImage?.position)!
         
         ball!.physicsBody = SKPhysicsBody(circleOfRadius: ballSize.width / 2)
         ball!.physicsBody!.affectedByGravity = true
         ball!.physicsBody!.categoryBitMask = 0b0001
         ball!.physicsBody!.collisionBitMask = 0b10011
+        ball!.physicsBody!.isDynamic = true
+        ball!.physicsBody!.restitution = 0
+        ball!.physicsBody!.friction = 1
+        ball!.physicsBody!.allowsRotation = true
         
         self.addChild(ball!)
     }
@@ -435,7 +436,11 @@ class GameScene: SKScene, UIScrollViewDelegate
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?)
     {
         splineShapeNode.physicsBody = SKPhysicsBody(edgeChainFrom: splineShapeNode.path!)
-        splineShapeNode.physicsBody?.affectedByGravity = false
+        splineShapeNode.physicsBody!.affectedByGravity = false
+        splineShapeNode.physicsBody!.isDynamic = false
+        splineShapeNode.physicsBody!.restitution = 0
+        splineShapeNode.physicsBody!.friction = 1;
+
         arrayOfLines.append(splineShapeNode)
         linesOriginalXArray.append(splineShapeNode.position.x + scrollView!.contentOffset.x)
         linesOriginalYArray.append(splineShapeNode.position.y - scrollView!.contentOffset.y)
