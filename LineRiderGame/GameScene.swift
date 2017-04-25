@@ -216,7 +216,8 @@ class GameScene: SKScene, UIScrollViewDelegate
         let background = SKSpriteNode(imageNamed: imageName)
         var point = self.view!.frame.origin
         point = self.convertPoint(fromView: point)
-        
+        point.x = point.x - 145
+        point.y = point.y + 145
         background.position = point
         background.anchorPoint = CGPoint(x: 0, y: 1)
         background.zPosition = -1
