@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="OQV-I8-ZNk">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="OQV-I8-ZNk">
     <device id="retina4_7" orientation="landscape">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -54,7 +54,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ImC-FT-pMb">
-                                <rect key="frame" x="584" y="28" width="75" height="300"/>
+                                <rect key="frame" x="584" y="60" width="75" height="255"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KFS-jA-KDq">
                                         <rect key="frame" x="13" y="8" width="48" height="48"/>
@@ -89,49 +89,38 @@
                                             <action selector="scrollButtonTapped:" destination="BV1-FR-VrT" eventType="touchUpInside" id="dMh-He-ouE"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9wX-DW-ALa">
-                                        <rect key="frame" x="13.5" y="232" width="48" height="48"/>
-                                        <state key="normal" title="hideMenuButton" image="menuBarToggleImage"/>
-                                        <connections>
-                                            <action selector="hideMenuButtonTapped:" destination="BV1-FR-VrT" eventType="touchUpInside" id="UMd-Ar-q2c"/>
-                                        </connections>
-                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="bhc-37-ci9" firstAttribute="height" secondItem="xSK-hC-C1x" secondAttribute="height" id="4bX-bd-Pcm"/>
-                                    <constraint firstItem="9wX-DW-ALa" firstAttribute="height" secondItem="ND3-w5-Cf4" secondAttribute="height" id="7rV-dg-gVx"/>
                                     <constraint firstItem="KFS-jA-KDq" firstAttribute="centerX" secondItem="ImC-FT-pMb" secondAttribute="centerX" id="FiF-Td-Mpr"/>
                                     <constraint firstItem="ND3-w5-Cf4" firstAttribute="centerX" secondItem="ImC-FT-pMb" secondAttribute="centerX" id="Ktp-Ak-1ft"/>
                                     <constraint firstItem="ND3-w5-Cf4" firstAttribute="height" secondItem="bhc-37-ci9" secondAttribute="height" id="LoS-DD-JSj"/>
                                     <constraint firstItem="bhc-37-ci9" firstAttribute="width" secondItem="xSK-hC-C1x" secondAttribute="width" id="QEn-DY-h94"/>
                                     <constraint firstItem="bhc-37-ci9" firstAttribute="centerX" secondItem="ImC-FT-pMb" secondAttribute="centerX" id="Qzz-Jb-bAT"/>
-                                    <constraint firstItem="9wX-DW-ALa" firstAttribute="top" secondItem="ND3-w5-Cf4" secondAttribute="bottom" constant="8" id="RVu-CH-kMT"/>
                                     <constraint firstItem="xSK-hC-C1x" firstAttribute="centerX" secondItem="ImC-FT-pMb" secondAttribute="centerX" id="Sqc-Nd-Edd"/>
                                     <constraint firstItem="KFS-jA-KDq" firstAttribute="top" secondItem="ImC-FT-pMb" secondAttribute="top" constant="8" id="Ss6-sO-ecT"/>
                                     <constraint firstItem="xSK-hC-C1x" firstAttribute="width" secondItem="KFS-jA-KDq" secondAttribute="width" id="Wyd-TA-ZQd"/>
                                     <constraint firstItem="ND3-w5-Cf4" firstAttribute="width" secondItem="bhc-37-ci9" secondAttribute="width" id="Y0t-qt-Pvs"/>
                                     <constraint firstItem="xSK-hC-C1x" firstAttribute="height" secondItem="KFS-jA-KDq" secondAttribute="height" id="bcI-hx-eUW"/>
                                     <constraint firstAttribute="width" constant="75" id="chL-gl-RMv"/>
-                                    <constraint firstItem="9wX-DW-ALa" firstAttribute="centerX" secondItem="ImC-FT-pMb" secondAttribute="centerX" id="dZu-ER-rhE"/>
                                     <constraint firstItem="ND3-w5-Cf4" firstAttribute="top" secondItem="bhc-37-ci9" secondAttribute="bottom" constant="8" id="hTu-2W-KZE"/>
                                     <constraint firstItem="xSK-hC-C1x" firstAttribute="top" secondItem="KFS-jA-KDq" secondAttribute="bottom" constant="8" id="iDo-79-9SL"/>
-                                    <constraint firstAttribute="height" constant="300" id="mke-lW-Tyc"/>
-                                    <constraint firstItem="9wX-DW-ALa" firstAttribute="width" secondItem="ND3-w5-Cf4" secondAttribute="width" id="sgh-X5-8Rj"/>
+                                    <constraint firstAttribute="height" constant="255" id="mke-lW-Tyc"/>
                                     <constraint firstItem="bhc-37-ci9" firstAttribute="top" secondItem="xSK-hC-C1x" secondAttribute="bottom" constant="8" id="zWv-2F-lbS"/>
                                 </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="ImC-FT-pMb" firstAttribute="top" secondItem="8aa-yV-Osq" secondAttribute="bottom" constant="8" id="4hG-RJ-hR1"/>
+                            <constraint firstItem="ImC-FT-pMb" firstAttribute="centerY" secondItem="3se-qz-xqx" secondAttribute="centerY" id="4kE-dd-vwR"/>
                             <constraint firstAttribute="trailing" secondItem="ImC-FT-pMb" secondAttribute="trailing" constant="8" id="Nym-3C-SOv"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="congratulationsView" destination="i0L-c0-fqY" id="LUc-nX-guG"/>
                         <outlet property="drawButton" destination="xSK-hC-C1x" id="nnu-Si-KV9"/>
-                        <outlet property="hideMenuButton" destination="9wX-DW-ALa" id="Hrw-PI-KKI"/>
                         <outlet property="menuBar" destination="ImC-FT-pMb" id="Ypk-2w-kRo"/>
                         <outlet property="playButton" destination="KFS-jA-KDq" id="brd-jp-UWS"/>
                         <outlet property="resetLevelButton" destination="ND3-w5-Cf4" id="rDb-Pd-IRS"/>
@@ -199,7 +188,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="menuBarToggleImage" width="48" height="48"/>
         <image name="pencilImage" width="250" height="250"/>
         <image name="play" width="48" height="48"/>
         <image name="reload" width="48" height="48"/>

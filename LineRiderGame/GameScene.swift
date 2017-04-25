@@ -26,7 +26,7 @@ class GameScene: SKScene, UIScrollViewDelegate
     var ball: SKShapeNode?
     
     var ballFlag: Bool = false
-    var level: Int = 0
+//    var level: Int = 0
     
     var totalStars: Int = 0
     var collectedStars: Int = 0
@@ -66,8 +66,8 @@ class GameScene: SKScene, UIScrollViewDelegate
     
     override func didMove(to view: SKView)
     {
-        /* Setup your scene here */
-        self.createLevel(level: currentLevel)
+        self.getNextLevel()
+        self.createLevel()
     }
     
     override func willMove(from view: SKView)
@@ -80,15 +80,27 @@ class GameScene: SKScene, UIScrollViewDelegate
         adjustContent(scrollView: scrollView)
     }
     
-    func createLevel(level: Level)
+    func getNextLevel() {
+        currentLevel = viewController.getNextLevel()
+    }
+    
+    func createLevel()
     {
+//        if self.scrollView?.isHidden != true
+//        {
+//            self.scrollView = setUpScrollView(withContentSize: level.contentSizeWidth!, andHeight: level.contentSizeHeight!)
+//        }
+//        self.createSpawnMarker(withX: level.spawnMarkerX!, withY: level.spawnMarkerY!)
+//        self.createBasket(withImage: "basket", withX: level.basketX!, withY: level.basketY!)
+//        self.createStarsMarker(withStars: level.stars)
+
         if self.scrollView?.isHidden != true
         {
-            self.scrollView = setUpScrollView(withContentSize: level.contentSizeWidth!, andHeight: level.contentSizeHeight!)
+            self.scrollView = setUpScrollView(withContentSize: currentLevel.contentSizeWidth!, andHeight: currentLevel.contentSizeHeight!)
         }
-        self.createSpawnMarker(withX: level.spawnMarkerX!, withY: level.spawnMarkerY!)
-        self.createBasket(withImage: "basket", withX: level.basketX!, withY: level.basketY!)
-        self.createStarsMarker(withStars: level.stars)
+        self.createSpawnMarker(withX: currentLevel.spawnMarkerX!, withY: currentLevel.spawnMarkerY!)
+        self.createBasket(withImage: "basket", withX: currentLevel.basketX!, withY: currentLevel.basketY!)
+        self.createStarsMarker(withStars: currentLevel.stars)
         
         setOriginalPositionsForStaticNodes()
     }
@@ -164,7 +176,7 @@ class GameScene: SKScene, UIScrollViewDelegate
                 
                 ball?.run(ballTransparencyAnimation, completion:
                     {
-                        self.level += 1
+//                        self.level += 1
                         
                         self.viewController?.completeLevel(totalStars: self.totalStars, collectedStars: self.collectedStars)
                     })
@@ -372,8 +384,9 @@ class GameScene: SKScene, UIScrollViewDelegate
         starsOriginalYArray = Array()
         arrayOfStarsHit = []
         
-        self.createLevel(level: currentLevel)
+        self.createLevel()
     }
+    
     
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?)

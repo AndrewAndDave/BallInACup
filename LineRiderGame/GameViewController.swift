@@ -19,7 +19,9 @@ class GameViewController: UIViewController
     @IBOutlet var drawButton: UIButton!
     @IBOutlet var resetLevelButton: UIButton!
     @IBOutlet var scrollButton: UIButton!
-    @IBOutlet var hideMenuButton: UIButton!
+    
+    var tapToHideMenu: UITapGestureRecognizer!
+    
     
     var gameScene: GameScene!
     var levelManager: LevelManager!
@@ -45,7 +47,7 @@ class GameViewController: UIViewController
             {
                 gameScene = sceneNode
                 gameScene!.viewController = self
-                gameScene.currentLevel = levelManager.currentLevel
+                //gameScene.currentLevel = levelManager.currentLevel
                 
                 // Copy gameplay related content over to the scene
                 sceneNode.entities = scene.entities
@@ -69,6 +71,10 @@ class GameViewController: UIViewController
         }
         scrollViewShowingToggle = false
         menuBarHidden = false
+        tapToHideMenu = UITapGestureRecognizer(target: self, action: #selector(hideMenuBar))
+        tapToHideMenu.numberOfTapsRequired = 2
+        tapToHideMenu.delegate = self as? UIGestureRecognizerDelegate
+        self.view.addGestureRecognizer(tapToHideMenu)
     }
 
     override var shouldAutorotate: Bool
@@ -120,28 +126,32 @@ class GameViewController: UIViewController
         gameScene!.hideScrollView()
     }
 
-    @IBAction func hideMenuButtonTapped(_ sender: UIButton)
+    
+    
+    func hideMenuBar(sender: UITapGestureRecognizer? = nil)
     {
         if (menuBarHidden == false)
         {
-            drawButton.isHidden = true
-            resetLevelButton.isHidden = true
-            scrollButton.isHidden = true
-            
+            UIView.animate(withDuration: 1,  animations: { () -> Void in
+                self.menuBar.alpha = 0
+                self.menuBar.center.x = self.menuBar.center.x + 100
+            })
             menuBarHidden = true
             return
         }
         
         if (menuBarHidden == true)
         {
-            drawButton.isHidden = false
-            resetLevelButton.isHidden = false
-            scrollButton.isHidden = false
             
+            UIView.animate(withDuration: 1,  animations: { () -> Void in
+                self.menuBar.alpha = 1
+                self.menuBar.center.x = self.menuBar.center.x - 100
+            })
             menuBarHidden = false
             return
         }
     }
+    
     
     func completeLevel(totalStars: Int, collectedStars: Int)
     {
@@ -149,8 +159,10 @@ class GameViewController: UIViewController
         self.collectedStars = collectedStars
         
         performSegue(withIdentifier: "Level Complete", sender: nil)
+        
+        gameScene!.cleanLevel = true
         gameScene.currentLevel = levelManager.getNextLevel()
-        gameScene.cleanUpLevel()
+        gameScene.createLevel()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
@@ -163,7 +175,16 @@ class GameViewController: UIViewController
             levelComplete.collectedStars = self.collectedStars
         }
     }
+
+//USED FOR INITIALIZATION IN GAMESCENE
+    func getNextLevel() -> (Level) {
+        let nextLevel = levelManager.getNextLevel()
+        return nextLevel
+    }
+    
 }
+
+
 
 
 
