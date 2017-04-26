@@ -416,6 +416,11 @@ class GameScene: SKScene, UIScrollViewDelegate
         
         let touch = touches.first
         var point = touch?.location(in: self.view)
+        
+        let point2 = touch?.location(in: self)
+        
+        print(point2!)
+        
         point = self.convertPoint(fromView: point!)
         mutablePath = CGMutablePath()
         mutablePath.move(to: point!)

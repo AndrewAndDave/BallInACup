@@ -68,16 +68,28 @@ class LevelManager
             
             level.contentSizeWidth = 1000
             level.contentSizeHeight = 1000
-            level.spawnMarkerX = 1
-            level.spawnMarkerY = 1
-            level.basketX = 1
-            level.basketY = 1
-            level.stars = [(x: -263, y: 34),(x: -318, y: -33),(x: -138, -84)]
+            level.imageName = "Group 1 Background"
+            level.spawnMarkerX = -292
+            level.spawnMarkerY = 120
+            level.basketX = 102
+            level.basketY = -128
+            level.stars = [(x: -235, y: 70),(x: -164, y: -19),(x: -86, -27)]
 
             
             break
             
-        case 4: break
+        case 4:
+            
+            level.contentSizeWidth = 1000
+            level.contentSizeHeight = 1000
+            level.imageName = "Group 1 Background"
+            level.spawnMarkerX = -288
+            level.spawnMarkerY = 5
+            level.basketX = 216
+            level.basketY = -138
+            level.stars = [(x: -209, y: -19),(x: -121, y: -37),(x: -32, -56), (x: 88, y: -89)]
+            
+            break
             
         case 5: break
             
