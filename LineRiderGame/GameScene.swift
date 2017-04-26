@@ -26,7 +26,6 @@ class GameScene: SKScene, UIScrollViewDelegate
     var ball: SKSpriteNode?
     
     var ballFlag: Bool = false
-//    var level: Int = 0
     
     var totalStars: Int = 0
     var collectedStars: Int = 0
@@ -50,6 +49,15 @@ class GameScene: SKScene, UIScrollViewDelegate
     var arrayOfNodes = [SKNode]()
     var nodeOriginalXArray = [CGFloat]()
     var nodeOriginalYArray = [CGFloat]()
+    
+    var typeOfLine: Int = 0
+    
+    enum Lines: Int
+    {
+        case Black = 0
+        case Red = 1
+        case Blue = 2
+    }
     
     var arrayOfLines = [SKShapeNode]()
     var linesOriginalXArray = [CGFloat]()
@@ -86,14 +94,6 @@ class GameScene: SKScene, UIScrollViewDelegate
     
     func createLevel()
     {
-//        if self.scrollView?.isHidden != true
-//        {
-//            self.scrollView = setUpScrollView(withContentSize: level.contentSizeWidth!, andHeight: level.contentSizeHeight!)
-//        }
-//        self.createSpawnMarker(withX: level.spawnMarkerX!, withY: level.spawnMarkerY!)
-//        self.createBasket(withImage: "basket", withX: level.basketX!, withY: level.basketY!)
-//        self.createStarsMarker(withStars: level.stars)
-
         if self.scrollView?.isHidden != true
         {
             self.scrollView = setUpScrollView(withContentSize: currentLevel.contentSizeWidth!, andHeight: currentLevel.contentSizeHeight!)
@@ -180,8 +180,6 @@ class GameScene: SKScene, UIScrollViewDelegate
                 
                 ball?.run(ballTransparencyAnimation, completion:
                     {
-//                        self.level += 1
-                        
                         self.viewController?.completeLevel(totalStars: self.totalStars, collectedStars: self.collectedStars)
                     })
             }
@@ -424,8 +422,6 @@ class GameScene: SKScene, UIScrollViewDelegate
         self.createLevel()
     }
     
-    
-    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?)
     {
         splineShapeNode = nil
@@ -438,10 +434,30 @@ class GameScene: SKScene, UIScrollViewDelegate
         print(point2!)
         
         point = self.convertPoint(fromView: point!)
+        
         mutablePath = CGMutablePath()
         mutablePath.move(to: point!)
+        
         splineShapeNode = SKShapeNode(path: mutablePath)
-        splineShapeNode.strokeColor = SKColor.black
+        
+        switch typeOfLine
+        {
+            case Lines.Black.rawValue:
+                splineShapeNode.strokeColor = SKColor.black
+            break
+            
+            case Lines.Red.rawValue:
+                splineShapeNode.strokeColor = SKColor.red
+            break
+            
+            case Lines.Blue.rawValue:
+                splineShapeNode.strokeColor = SKColor.blue
+            break
+            
+            default:
+            break
+        }
+        
         self.addChild(splineShapeNode)
     }
     
@@ -457,15 +473,41 @@ class GameScene: SKScene, UIScrollViewDelegate
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?)
     {
-        splineShapeNode.physicsBody = SKPhysicsBody(edgeChainFrom: splineShapeNode.path!)
-        splineShapeNode.physicsBody!.affectedByGravity = false
-        splineShapeNode.physicsBody!.isDynamic = false
-        splineShapeNode.physicsBody!.restitution = 0
-        splineShapeNode.physicsBody!.friction = 1;
+        switch typeOfLine
+        {
+            case Lines.Black.rawValue:
+                splineShapeNode.physicsBody = SKPhysicsBody(edgeChainFrom: splineShapeNode.path!)
+                splineShapeNode.physicsBody!.affectedByGravity = false
+                splineShapeNode.physicsBody!.isDynamic = false
+                splineShapeNode.physicsBody!.restitution = 0
+                splineShapeNode.physicsBody!.friction = 1
+            break
+            
+            case Lines.Red.rawValue:
+                splineShapeNode.physicsBody = SKPhysicsBody(edgeChainFrom: splineShapeNode.path!)
+                splineShapeNode.physicsBody!.affectedByGravity = false
+                splineShapeNode.physicsBody!.isDynamic = false
+                splineShapeNode.physicsBody!.restitution = 0
+                splineShapeNode.physicsBody!.friction = 0
+            break
+            
+            case Lines.Blue.rawValue:
+                splineShapeNode.physicsBody = SKPhysicsBody(edgeChainFrom: splineShapeNode.path!)
+                splineShapeNode.physicsBody!.affectedByGravity = false
+                splineShapeNode.physicsBody!.isDynamic = false
+                splineShapeNode.physicsBody!.restitution = 1
+                splineShapeNode.physicsBody!.friction = 1
+            break
+            
+            default:
+            break
+        }
 
         arrayOfLines.append(splineShapeNode)
+        
         linesOriginalXArray.append(splineShapeNode.position.x + scrollView!.contentOffset.x)
         linesOriginalYArray.append(splineShapeNode.position.y - scrollView!.contentOffset.y)
+        
         adjustContent(scrollView: scrollView!)
     }
     
@@ -482,4 +524,13 @@ class GameScene: SKScene, UIScrollViewDelegate
         viewController.scrollViewShowingToggle = true
     }
     
+    func switchLine()
+    {
+        typeOfLine += 1
+        
+        if typeOfLine == 3
+        {
+            typeOfLine = 0
+        }
+    }
 }
