@@ -19,7 +19,7 @@ class MainScreenViewController: UIViewController {
     }
     
     @IBAction func startCurrentLevel(_ sender: UIButton) {
-        performSegue(withIdentifier: "StartGame", sender: sender)
+//        performSegue(withIdentifier: "StartGame", sender: sender)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

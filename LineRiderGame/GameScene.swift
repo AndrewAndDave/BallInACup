@@ -98,6 +98,7 @@ class GameScene: SKScene, UIScrollViewDelegate
         {
             self.scrollView = setUpScrollView(withContentSize: currentLevel.contentSizeWidth!, andHeight: currentLevel.contentSizeHeight!)
         }
+        
 
         self.createBackground(imageName: currentLevel.imageName!)
         self.createSpawnMarker(withX: currentLevel.spawnMarkerX!, withY: currentLevel.spawnMarkerY!)
@@ -164,6 +165,7 @@ class GameScene: SKScene, UIScrollViewDelegate
         
         self.checkBasketBoundary()
         self.checkStarBoundary()
+//        self.centerViewOnBall()
     }
     
     func checkBasketBoundary()
@@ -210,10 +212,24 @@ class GameScene: SKScene, UIScrollViewDelegate
             }
         }
     }
+    
+//    func centerViewOnBall() {
+//        if ball?.position.x == self.view!.center.x {
+//            self.view!.center.x = ball!.position.x
+//        }
+//        if ball?.position.y == self.view!.center.y {
+//            self.view!.center.y = ball!.position.y
+//        }
+//    }
 
     func createBackground(imageName: String)
     {
-        let background = SKSpriteNode(imageNamed: imageName)
+        let background = SKSpriteNode(imageNamed: "bg.png")
+//        background.size = self.frame.size
+//        print(#line, background.texture?.size() ?? "No size")
+//        let image = background.texture?.cgImage()
+//        print(#line, image?.height, image?.width)
+        
         var point = self.view!.frame.origin
         point = self.convertPoint(fromView: point)
         point.x = point.x - 255
