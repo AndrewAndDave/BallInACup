@@ -473,10 +473,11 @@ class GameScene: SKScene, UIScrollViewDelegate
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?)
     {
+        splineShapeNode.physicsBody = SKPhysicsBody(edgeChainFrom: splineShapeNode.path!)
+        
         switch typeOfLine
         {
             case Lines.Black.rawValue:
-                splineShapeNode.physicsBody = SKPhysicsBody(edgeChainFrom: splineShapeNode.path!)
                 splineShapeNode.physicsBody!.affectedByGravity = false
                 splineShapeNode.physicsBody!.isDynamic = false
                 splineShapeNode.physicsBody!.restitution = 0
@@ -484,7 +485,6 @@ class GameScene: SKScene, UIScrollViewDelegate
             break
             
             case Lines.Red.rawValue:
-                splineShapeNode.physicsBody = SKPhysicsBody(edgeChainFrom: splineShapeNode.path!)
                 splineShapeNode.physicsBody!.affectedByGravity = false
                 splineShapeNode.physicsBody!.isDynamic = false
                 splineShapeNode.physicsBody!.restitution = 0
@@ -492,7 +492,6 @@ class GameScene: SKScene, UIScrollViewDelegate
             break
             
             case Lines.Blue.rawValue:
-                splineShapeNode.physicsBody = SKPhysicsBody(edgeChainFrom: splineShapeNode.path!)
                 splineShapeNode.physicsBody!.affectedByGravity = false
                 splineShapeNode.physicsBody!.isDynamic = false
                 splineShapeNode.physicsBody!.restitution = 1
