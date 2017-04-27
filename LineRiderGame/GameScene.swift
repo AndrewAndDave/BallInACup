@@ -307,7 +307,7 @@ class GameScene: SKScene, UIScrollViewDelegate
     func createBasketBackBoard(withX x: CGFloat, withY y: CGFloat)
     {
         backBoard = SKShapeNode(rectOf: CGSize(width: 8, height: 80))
-        backBoard!.strokeColor = UIColor.purple
+        backBoard!.strokeColor = UIColor.clear
         backBoard!.position = CGPoint(x: x + 23, y: y)
         backBoard!.physicsBody = SKPhysicsBody(edgeChainFrom: backBoard!.path!)
         self.addChild(backBoard!)
@@ -324,7 +324,7 @@ class GameScene: SKScene, UIScrollViewDelegate
         insideBasketBezierPath.addLine(to: CGPoint(x: 32.0, y: 10.0))
         
         insideBasket = SKShapeNode(path: insideBasketBezierPath.cgPath)
-        insideBasket!.strokeColor = UIColor.red
+        insideBasket!.strokeColor = UIColor.clear
         insideBasket!.position = CGPoint(x: x - 22, y: y - 41)
         insideBasket!.physicsBody = SKPhysicsBody(edgeChainFrom: insideBasket!.path!)
         self.addChild(insideBasket!)
@@ -338,7 +338,7 @@ class GameScene: SKScene, UIScrollViewDelegate
         outsideBasketBezierPath.addLine(to: CGPoint(x: 35.0, y: 18.0))
         
         outsideBasket = SKShapeNode(path: outsideBasketBezierPath.cgPath)
-        outsideBasket!.strokeColor = UIColor.black
+        outsideBasket!.strokeColor = UIColor.clear
         outsideBasket!.position = CGPoint(x: x - 23, y: y - 43)
         outsideBasket!.physicsBody = SKPhysicsBody(edgeChainFrom: outsideBasket!.path!)
         self.addChild(outsideBasket!)
@@ -350,7 +350,7 @@ class GameScene: SKScene, UIScrollViewDelegate
         slantedBasketWallBezierPath.addLine(to: CGPoint(x: 0.0, y: 0.0))
         
         slantedBasketWall = SKShapeNode(path: slantedBasketWallBezierPath.cgPath)
-        slantedBasketWall!.strokeColor = UIColor.green
+        slantedBasketWall!.strokeColor = UIColor.clear
         slantedBasketWall!.position = CGPoint(x: x + 11, y: y - 25)
         slantedBasketWall!.physicsBody = SKPhysicsBody(edgeChainFrom: slantedBasketWall!.path!)
         self.addChild(slantedBasketWall!)
