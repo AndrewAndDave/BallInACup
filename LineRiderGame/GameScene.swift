@@ -72,13 +72,6 @@ class GameScene: SKScene, UIScrollViewDelegate
     
     var cam: SKCameraNode!
     
-    
-    
-    
-    
-    
-    
-    
     var menuBarPosition: CGPoint?
     
     override func didMove(to view: SKView)
@@ -99,7 +92,8 @@ class GameScene: SKScene, UIScrollViewDelegate
         adjustContent(scrollView: scrollView)
     }
     
-    func getNextLevel() {
+    func getNextLevel()
+    {
         currentLevel = viewController.getNextLevel()
     }
     
@@ -110,7 +104,6 @@ class GameScene: SKScene, UIScrollViewDelegate
             self.scrollView = setUpScrollView(withContentSize: currentLevel.contentSizeWidth!, andHeight: currentLevel.contentSizeHeight!)
         }
         
-
         self.createBackground(imageName: currentLevel.imageName!)
         self.createSpawnMarker(withX: currentLevel.spawnMarkerX!, withY: currentLevel.spawnMarkerY!)
         self.createBasket(withImage: "basket", withX: currentLevel.basketX!, withY: currentLevel.basketY!)
@@ -163,7 +156,6 @@ class GameScene: SKScene, UIScrollViewDelegate
         if cleanLevel
         {
             cleanUpLevel()
-            self.camera!.position = spawnImage!.position
         
             cleanLevel = false
         }
@@ -177,8 +169,9 @@ class GameScene: SKScene, UIScrollViewDelegate
         
         self.checkBasketBoundary()
         self.checkStarBoundary()
-//        self.centerViewOnBall()
-        if ball != nil {
+       
+        if ball != nil
+        {
             cam!.position = ball!.position
         }
     }
@@ -191,14 +184,17 @@ class GameScene: SKScene, UIScrollViewDelegate
             {
                 outsideBasket?.physicsBody = nil
                 insideBasket?.physicsBody = nil
+                
+                self.physicsWorld.gravity = CGVector(dx: 0.0, dy: 0.1)
+                
                 let ballTransparencyAnimation = SKAction.fadeOut(withDuration: 3)
                 
                 ball?.run(ballTransparencyAnimation, completion:
                     {
-//                        self.level += 1
-                        self.camera!.position = self.spawnImage!.position
                         self.viewController?.completeLevel(totalStars: self.totalStars, collectedStars: self.collectedStars)
                     })
+                
+                self.ball = nil
             }
         }
     }
@@ -227,18 +223,10 @@ class GameScene: SKScene, UIScrollViewDelegate
             }
         }
     }
-    
-//    func centerViewOnBall() {
-//        }
-//    }
 
     func createBackground(imageName: String)
     {
         let background = SKSpriteNode(imageNamed: "bg.png")
-//        background.size = self.frame.size
-//        print(#line, background.texture?.size() ?? "No size")
-//        let image = background.texture?.cgImage()
-//        print(#line, image?.height, image?.width)
         
         var point = self.view!.frame.origin
         point = self.convertPoint(fromView: point)
@@ -247,7 +235,6 @@ class GameScene: SKScene, UIScrollViewDelegate
         background.position = point
         background.anchorPoint = CGPoint(x: 0, y: 1)
         background.zPosition = -1
-        
         
         self.addChild(background)
         
@@ -320,7 +307,7 @@ class GameScene: SKScene, UIScrollViewDelegate
     func createBasketBackBoard(withX x: CGFloat, withY y: CGFloat)
     {
         backBoard = SKShapeNode(rectOf: CGSize(width: 8, height: 80))
-        backBoard!.strokeColor = UIColor.clear
+        backBoard!.strokeColor = UIColor.purple
         backBoard!.position = CGPoint(x: x + 23, y: y)
         backBoard!.physicsBody = SKPhysicsBody(edgeChainFrom: backBoard!.path!)
         self.addChild(backBoard!)
@@ -337,7 +324,7 @@ class GameScene: SKScene, UIScrollViewDelegate
         insideBasketBezierPath.addLine(to: CGPoint(x: 32.0, y: 10.0))
         
         insideBasket = SKShapeNode(path: insideBasketBezierPath.cgPath)
-        insideBasket!.strokeColor = UIColor.clear
+        insideBasket!.strokeColor = UIColor.red
         insideBasket!.position = CGPoint(x: x - 22, y: y - 41)
         insideBasket!.physicsBody = SKPhysicsBody(edgeChainFrom: insideBasket!.path!)
         self.addChild(insideBasket!)
@@ -351,7 +338,7 @@ class GameScene: SKScene, UIScrollViewDelegate
         outsideBasketBezierPath.addLine(to: CGPoint(x: 35.0, y: 18.0))
         
         outsideBasket = SKShapeNode(path: outsideBasketBezierPath.cgPath)
-        outsideBasket!.strokeColor = UIColor.clear
+        outsideBasket!.strokeColor = UIColor.black
         outsideBasket!.position = CGPoint(x: x - 23, y: y - 43)
         outsideBasket!.physicsBody = SKPhysicsBody(edgeChainFrom: outsideBasket!.path!)
         self.addChild(outsideBasket!)
@@ -363,7 +350,7 @@ class GameScene: SKScene, UIScrollViewDelegate
         slantedBasketWallBezierPath.addLine(to: CGPoint(x: 0.0, y: 0.0))
         
         slantedBasketWall = SKShapeNode(path: slantedBasketWallBezierPath.cgPath)
-        slantedBasketWall!.strokeColor = UIColor.clear
+        slantedBasketWall!.strokeColor = UIColor.green
         slantedBasketWall!.position = CGPoint(x: x + 11, y: y - 25)
         slantedBasketWall!.physicsBody = SKPhysicsBody(edgeChainFrom: slantedBasketWall!.path!)
         self.addChild(slantedBasketWall!)
@@ -419,6 +406,11 @@ class GameScene: SKScene, UIScrollViewDelegate
     func cleanUpLevel ()
     {
         self.removeAllChildren()
+        
+        self.physicsWorld.gravity = CGVector(dx: 0.0, dy: -9.80000019073486)
+        
+        self.position = CGPoint(x: 0.0, y: 0.0)
+        self.camera!.position = self.position
         
         totalStars = 0
         collectedStars = 0
