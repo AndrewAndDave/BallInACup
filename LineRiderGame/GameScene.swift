@@ -186,8 +186,9 @@ class GameScene: SKScene, UIScrollViewDelegate
                 insideBasket?.physicsBody = nil
                 
                 self.physicsWorld.gravity = CGVector(dx: 0.0, dy: 0.1)
+                self.physicsWorld.speed = CGFloat(0.2)
                 
-                let ballTransparencyAnimation = SKAction.fadeOut(withDuration: 3)
+                let ballTransparencyAnimation = SKAction.fadeOut(withDuration: 1)
                 
                 ball?.run(ballTransparencyAnimation, completion:
                     {
@@ -408,9 +409,12 @@ class GameScene: SKScene, UIScrollViewDelegate
         self.removeAllChildren()
         
         self.physicsWorld.gravity = CGVector(dx: 0.0, dy: -9.80000019073486)
+        self.physicsWorld.speed = CGFloat(1.0)
         
         self.position = CGPoint(x: 0.0, y: 0.0)
         self.camera!.position = self.position
+        
+        typeOfLine = 0
         
         totalStars = 0
         collectedStars = 0
