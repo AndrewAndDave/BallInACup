@@ -62,17 +62,29 @@ class GameScene: SKScene, UIScrollViewDelegate
     var arrayOfStarsHit = [Bool]()
     var starsToRemove = Set<SKShapeNode>()
     
+    var cam: SKCameraNode!
+    
+    
+    
+    
+    
+    
+    
+    
     var menuBarPosition: CGPoint?
     
     override func didMove(to view: SKView)
     {
         self.getNextLevel()
         self.createLevel()
+        cam = SKCameraNode()
+        camera = cam
     }
     
     override func willMove(from view: SKView)
     {
         scrollView = nil
+        
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView)
@@ -145,6 +157,11 @@ class GameScene: SKScene, UIScrollViewDelegate
             Star.position.y = starsOriginalYArray[i] + scrollView.contentOffset.y
             i += 1
         }
+//        if ball != nil {
+//            ball!.position.x = 0
+//            ball!.position.y = 0
+//        }
+//        oldScrollViewContentOffset = scrollView.contentOffset
     }
     
     override func update(_ currentTime: TimeInterval)
@@ -152,6 +169,7 @@ class GameScene: SKScene, UIScrollViewDelegate
         if cleanLevel
         {
             cleanUpLevel()
+            self.camera!.position = spawnImage!.position
         
             cleanLevel = false
         }
@@ -166,6 +184,9 @@ class GameScene: SKScene, UIScrollViewDelegate
         self.checkBasketBoundary()
         self.checkStarBoundary()
 //        self.centerViewOnBall()
+        if ball != nil {
+            cam!.position = ball!.position
+        }
     }
     
     func checkBasketBoundary()
@@ -181,7 +202,7 @@ class GameScene: SKScene, UIScrollViewDelegate
                 ball?.run(ballTransparencyAnimation, completion:
                     {
 //                        self.level += 1
-                        
+                        self.camera!.position = self.spawnImage!.position
                         self.viewController?.completeLevel(totalStars: self.totalStars, collectedStars: self.collectedStars)
                     })
             }
@@ -212,15 +233,32 @@ class GameScene: SKScene, UIScrollViewDelegate
             }
         }
     }
-    
+//    
 //    func centerViewOnBall() {
-//        if ball?.position.x == self.view!.center.x {
-//            self.view!.center.x = ball!.position.x
-//        }
-//        if ball?.position.y == self.view!.center.y {
-//            self.view!.center.y = ball!.position.y
+//        if ball != nil {
+//            if ball!.position.x > 0 {
+//                centerXOnNode(node: ball!)
+//            }
+//            if ball!.position.y < 0 {
+//                centerYOnNode(node: ball!)
+//            }
+//
 //        }
 //    }
+//    
+//    func centerXOnNode(node: SKNode) {
+//
+//        self.scrollView!.contentOffset.x = CGFloat(node.position.x)
+//        
+//    }
+//    
+//    func centerYOnNode(node: SKNode!) {
+//        let viewPositionInScene: CGPoint = self.view!.convert(node.position, to: scrollView!)
+//        self.scrollView!.contentOffset.y = CGFloat (0 - viewPositionInScene.y + currentLevel.spawnMarkerY!)
+//        node.position.x = 0
+//
+//    }
+    
 
     func createBackground(imageName: String)
     {
@@ -366,8 +404,12 @@ class GameScene: SKScene, UIScrollViewDelegate
     {
         if !self.ballFlag
         {
-            self.setBallProperties(withImage: withImage)
-            self.ballFlag = true
+            UIView.animate(withDuration: 3, animations: {
+                self.camera?.position = (self.spawnImage?.position)!
+            }, completion: {(finished: Bool) in
+                self.setBallProperties(withImage: "ball")
+                self.ballFlag = true
+            })
         }
     }
     

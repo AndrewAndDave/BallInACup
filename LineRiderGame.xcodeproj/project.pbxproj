@@ -114,7 +114,7 @@
 				TargetAttributes = {
 					4997C0621EA509960004C9DD = {
 						CreatedOnToolsVersion = 8.3.1;
-						DevelopmentTeam = NGL4U23FEE;
+						DevelopmentTeam = 59NTDPFXJ3;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -285,7 +285,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = NGL4U23FEE;
+				DEVELOPMENT_TEAM = 59NTDPFXJ3;
 				INFOPLIST_FILE = LineRiderGame/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -299,7 +299,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = NGL4U23FEE;
+				DEVELOPMENT_TEAM = 59NTDPFXJ3;
 				INFOPLIST_FILE = LineRiderGame/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
