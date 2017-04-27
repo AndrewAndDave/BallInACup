@@ -440,6 +440,8 @@ class GameScene: SKScene, UIScrollViewDelegate
         mutablePath = CGMutablePath()
         mutablePath.move(to: point!)
         
+        splineShapeNode = SKShapeNode(path: mutablePath)
+        
         switch typeOfLine
         {
             case Lines.Black.rawValue:
