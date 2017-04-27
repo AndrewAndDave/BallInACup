@@ -178,7 +178,7 @@ class GameScene: SKScene, UIScrollViewDelegate
         self.checkBasketBoundary()
         self.checkStarBoundary()
 //        self.centerViewOnBall()
-        if ball != nil {
+        if ball != nil && outsideBasket?.physicsBody != nil{
             cam!.position = ball!.position
         }
     }
@@ -192,6 +192,7 @@ class GameScene: SKScene, UIScrollViewDelegate
                 outsideBasket?.physicsBody = nil
                 insideBasket?.physicsBody = nil
                 let ballTransparencyAnimation = SKAction.fadeOut(withDuration: 3)
+                camera?.position = (basketImage?.position)!
                 
                 ball?.run(ballTransparencyAnimation, completion:
                     {
