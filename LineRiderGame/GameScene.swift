@@ -525,13 +525,18 @@ class GameScene: SKScene, UIScrollViewDelegate
         adjustContent(scrollView: scrollView!)
     }
     
-    func hideScrollView ()
+    func hideScrollView()
     {
         self.scrollView?.isHidden = true
         viewController.scrollViewShowingToggle = false
     }
     
-    func showScrollView ()
+    func resetLine()
+    {
+        self.typeOfLine = 0
+    }
+    
+    func showScrollView()
     {
         self.scrollView?.isHidden = false
         
@@ -540,11 +545,11 @@ class GameScene: SKScene, UIScrollViewDelegate
     
     func switchLine()
     {
-        typeOfLine += 1
+        self.typeOfLine += 1
         
-        if typeOfLine == 3
+        if self.typeOfLine == 3
         {
-            typeOfLine = 0
+            self.typeOfLine = 0
         }
     }
 }
