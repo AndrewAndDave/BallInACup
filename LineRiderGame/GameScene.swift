@@ -431,6 +431,8 @@ class GameScene: SKScene, UIScrollViewDelegate
         starsOriginalYArray = Array()
         arrayOfStarsHit = []
         
+        self.hideScrollView()
+        
         self.createLevel()
     }
     
