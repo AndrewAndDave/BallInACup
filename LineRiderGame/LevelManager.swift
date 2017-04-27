@@ -27,7 +27,6 @@ class LevelManager
         {
             levelSelected = 0
         }
-//        currentLevel = getNextLevel()
     }
 
     func getNextLevel() -> (Level)

@@ -22,7 +22,6 @@ class GameViewController: UIViewController
     
     var tapToHideMenu: UITapGestureRecognizer!
     
-    
     var gameScene: GameScene!
     var levelManager: LevelManager!
     var menuBarHidden: Bool!
@@ -116,6 +115,11 @@ class GameViewController: UIViewController
         gameScene!.cleanLevel = true
     }
     
+    @IBAction func switchLine(_ sender: UIButton)
+    {
+        gameScene!.switchLine()
+    }
+    
     @IBAction func scrollButtonTapped(_ sender: UIButton)
     {
         gameScene!.showScrollView()
@@ -125,8 +129,6 @@ class GameViewController: UIViewController
     {
         gameScene!.hideScrollView()
     }
-
-    
     
     func hideMenuBar(sender: UITapGestureRecognizer? = nil)
     {
