@@ -97,6 +97,8 @@ class GameScene: SKScene, UIScrollViewDelegate
         if self.scrollView?.isHidden != true
         {
             self.scrollView = setUpScrollView(withContentSize: currentLevel.contentSizeWidth!, andHeight: currentLevel.contentSizeHeight!)
+            
+            //self.physicsBody = SKPhysicsBody(edgeLoopFrom: self.scrollView!.frame)
         }
         
 
@@ -347,12 +349,12 @@ class GameScene: SKScene, UIScrollViewDelegate
         arrayOfNodes.append(outsideBasket!)
         
         let slantedBasketWallBezierPath = UIBezierPath()
-        slantedBasketWallBezierPath.move(to: CGPoint(x: 5.0, y: 11.0))
+        slantedBasketWallBezierPath.move(to: CGPoint(x: 10.0, y: 11.0))
         slantedBasketWallBezierPath.addLine(to: CGPoint(x: 0.0, y: 0.0))
         
         slantedBasketWall = SKShapeNode(path: slantedBasketWallBezierPath.cgPath)
         slantedBasketWall!.strokeColor = UIColor.clear
-        slantedBasketWall!.position = CGPoint(x: x + 13, y: y - 25)
+        slantedBasketWall!.position = CGPoint(x: x + 11, y: y - 25)
         slantedBasketWall!.physicsBody = SKPhysicsBody(edgeChainFrom: slantedBasketWall!.path!)
         self.addChild(slantedBasketWall!)
         
@@ -438,8 +440,6 @@ class GameScene: SKScene, UIScrollViewDelegate
         mutablePath = CGMutablePath()
         mutablePath.move(to: point!)
         
-        splineShapeNode = SKShapeNode(path: mutablePath)
-        
         switch typeOfLine
         {
             case Lines.Black.rawValue:
@@ -455,6 +455,7 @@ class GameScene: SKScene, UIScrollViewDelegate
             break
             
             default:
+                splineShapeNode.strokeColor = SKColor.black
             break
         }
         
@@ -499,6 +500,10 @@ class GameScene: SKScene, UIScrollViewDelegate
             break
             
             default:
+                splineShapeNode.physicsBody!.affectedByGravity = false
+                splineShapeNode.physicsBody!.isDynamic = false
+                splineShapeNode.physicsBody!.restitution = 0
+                splineShapeNode.physicsBody!.friction = 1
             break
         }
 
