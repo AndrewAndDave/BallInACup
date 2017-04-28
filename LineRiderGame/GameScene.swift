@@ -389,6 +389,7 @@ class GameScene: SKScene, UIScrollViewDelegate
         ball!.physicsBody!.restitution = 0
         ball!.physicsBody!.friction = 1
         ball!.physicsBody!.allowsRotation = true
+        ball!.physicsBody!.velocity = CGVector(dx: 10, dy: 0)
         
         self.addChild(ball!)
     }
