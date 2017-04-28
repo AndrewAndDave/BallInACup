@@ -127,6 +127,7 @@ class GameViewController: UIViewController
 
     @IBAction func drawButtonTapped(_ sender: UIButton)
     {
+        gameScene!.resetLine()
         gameScene!.hideScrollView()
     }
     

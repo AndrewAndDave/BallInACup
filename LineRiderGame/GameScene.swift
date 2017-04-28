@@ -220,6 +220,8 @@ class GameScene: SKScene, UIScrollViewDelegate
                 {
                     arrayOfStarsHit[count] = true
                     
+                    self.collectedStars += 1
+                    
                     let starMoveUpAnimation = SKAction.move(to: CGPoint(x: starsOriginalXArray[count], y: starsOriginalYArray[count] + 10), duration: 0.5)
                     let starMoveDownAnimation = SKAction.move(to: CGPoint(x: starsOriginalXArray[count], y: starsOriginalYArray[count]), duration: 0.5)
                     let starTransparencyAnimation = SKAction.fadeOut(withDuration: 1)
@@ -227,8 +229,6 @@ class GameScene: SKScene, UIScrollViewDelegate
                     arrayOfStars[count].run(SKAction.sequence([starMoveUpAnimation, starMoveDownAnimation, starTransparencyAnimation]), completion:
                         {
                             self.starsToRemove.update(with: self.arrayOfStars[count])
-                            
-                            self.collectedStars += 1
                         })
                 }
             }
@@ -399,6 +399,7 @@ class GameScene: SKScene, UIScrollViewDelegate
         ball!.physicsBody!.restitution = 0
         ball!.physicsBody!.friction = 1
         ball!.physicsBody!.allowsRotation = true
+        ball!.physicsBody!.velocity = CGVector(dx: 10, dy: 0)
         
         self.addChild(ball!)
     }
@@ -535,13 +536,18 @@ class GameScene: SKScene, UIScrollViewDelegate
         adjustContent(scrollView: scrollView!)
     }
     
-    func hideScrollView ()
+    func hideScrollView()
     {
         self.scrollView?.isHidden = true
         viewController.scrollViewShowingToggle = false
     }
     
-    func showScrollView ()
+    func resetLine()
+    {
+        self.typeOfLine = 0
+    }
+    
+    func showScrollView()
     {
         self.scrollView?.isHidden = false
         
@@ -550,11 +556,11 @@ class GameScene: SKScene, UIScrollViewDelegate
     
     func switchLine()
     {
-        typeOfLine += 1
+        self.typeOfLine += 1
         
-        if typeOfLine == 3
+        if self.typeOfLine == 3
         {
-            typeOfLine = 0
+            self.typeOfLine = 0
         }
     }
 }
