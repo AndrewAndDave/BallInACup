@@ -72,13 +72,6 @@ class GameScene: SKScene, UIScrollViewDelegate
     
     var cam: SKCameraNode!
     
-    
-    
-    
-    
-    
-    
-    
     var menuBarPosition: CGPoint?
     
     override func didMove(to view: SKView)
@@ -99,7 +92,8 @@ class GameScene: SKScene, UIScrollViewDelegate
         adjustContent(scrollView: scrollView)
     }
     
-    func getNextLevel() {
+    func getNextLevel()
+    {
         currentLevel = viewController.getNextLevel()
     }
     
@@ -110,7 +104,6 @@ class GameScene: SKScene, UIScrollViewDelegate
             self.scrollView = setUpScrollView(withContentSize: currentLevel.contentSizeWidth!, andHeight: currentLevel.contentSizeHeight!)
         }
         
-
         self.createBackground(imageName: currentLevel.imageName!)
         self.createSpawnMarker(withX: currentLevel.spawnMarkerX!, withY: currentLevel.spawnMarkerY!)
         self.createBasket(withImage: "basket", withX: currentLevel.basketX!, withY: currentLevel.basketY!)
@@ -163,7 +156,6 @@ class GameScene: SKScene, UIScrollViewDelegate
         if cleanLevel
         {
             cleanUpLevel()
-            self.camera!.position = spawnImage!.position
         
             cleanLevel = false
         }
@@ -177,8 +169,14 @@ class GameScene: SKScene, UIScrollViewDelegate
         
         self.checkBasketBoundary()
         self.checkStarBoundary()
+<<<<<<< HEAD
 //        self.centerViewOnBall()
         if ball != nil && outsideBasket?.physicsBody != nil{
+=======
+       
+        if ball != nil
+        {
+>>>>>>> de6f1547d16e496c7a3f1a439a7c061434fc111d
             cam!.position = ball!.position
         }
     }
@@ -191,15 +189,23 @@ class GameScene: SKScene, UIScrollViewDelegate
             {
                 outsideBasket?.physicsBody = nil
                 insideBasket?.physicsBody = nil
+<<<<<<< HEAD
                 let ballTransparencyAnimation = SKAction.fadeOut(withDuration: 3)
                 camera?.position = (basketImage?.position)!
+=======
+                
+                self.physicsWorld.gravity = CGVector(dx: 0.0, dy: 0.1)
+                self.physicsWorld.speed = CGFloat(0.2)
+                
+                let ballTransparencyAnimation = SKAction.fadeOut(withDuration: 1)
+>>>>>>> de6f1547d16e496c7a3f1a439a7c061434fc111d
                 
                 ball?.run(ballTransparencyAnimation, completion:
                     {
-//                        self.level += 1
-                        self.camera!.position = self.spawnImage!.position
                         self.viewController?.completeLevel(totalStars: self.totalStars, collectedStars: self.collectedStars)
                     })
+                
+                self.ball = nil
             }
         }
     }
@@ -228,18 +234,10 @@ class GameScene: SKScene, UIScrollViewDelegate
             }
         }
     }
-    
-//    func centerViewOnBall() {
-//        }
-//    }
 
     func createBackground(imageName: String)
     {
         let background = SKSpriteNode(imageNamed: "bg.png")
-//        background.size = self.frame.size
-//        print(#line, background.texture?.size() ?? "No size")
-//        let image = background.texture?.cgImage()
-//        print(#line, image?.height, image?.width)
         
         var point = self.view!.frame.origin
         point = self.convertPoint(fromView: point)
@@ -248,7 +246,6 @@ class GameScene: SKScene, UIScrollViewDelegate
         background.position = point
         background.anchorPoint = CGPoint(x: 0, y: 1)
         background.zPosition = -1
-        
         
         self.addChild(background)
         
@@ -421,6 +418,14 @@ class GameScene: SKScene, UIScrollViewDelegate
     {
         self.removeAllChildren()
         
+        self.physicsWorld.gravity = CGVector(dx: 0.0, dy: -9.80000019073486)
+        self.physicsWorld.speed = CGFloat(1.0)
+        
+        self.position = CGPoint(x: 0.0, y: 0.0)
+        self.camera!.position = self.position
+        
+        typeOfLine = 0
+        
         totalStars = 0
         collectedStars = 0
         
@@ -435,6 +440,8 @@ class GameScene: SKScene, UIScrollViewDelegate
         starsOriginalXArray = Array()
         starsOriginalYArray = Array()
         arrayOfStarsHit = []
+        
+        self.hideScrollView()
         
         self.createLevel()
     }

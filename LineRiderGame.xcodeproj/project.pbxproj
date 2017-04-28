@@ -289,7 +289,7 @@
 				INFOPLIST_FILE = LineRiderGame/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = feels024.LineRiderGame;
+				PRODUCT_BUNDLE_IDENTIFIER = davidguichon.LineRiderGame;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -303,7 +303,7 @@
 				INFOPLIST_FILE = LineRiderGame/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = feels024.LineRiderGame;
+				PRODUCT_BUNDLE_IDENTIFIER = davidguichon.LineRiderGame;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
