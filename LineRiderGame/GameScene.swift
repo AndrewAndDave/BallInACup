@@ -50,6 +50,11 @@ class GameScene: SKScene, UIScrollViewDelegate
     var nodeOriginalXArray = [CGFloat]()
     var nodeOriginalYArray = [CGFloat]()
     
+    var worldBoundary: SKShapeNode!
+    var endGameWorldBoundary: SKShapeNode!
+    
+    
+    
     var typeOfLine: Int = 0
     
     enum Lines: Int
@@ -108,6 +113,7 @@ class GameScene: SKScene, UIScrollViewDelegate
         self.createSpawnMarker(withX: currentLevel.spawnMarkerX!, withY: currentLevel.spawnMarkerY!)
         self.createBasket(withImage: "basket", withX: currentLevel.basketX!, withY: currentLevel.basketY!)
         self.createStarsMarker(withStars: currentLevel.stars)
+        self.createWorldBoundaries()
         
         setOriginalPositionsForStaticNodes()
     }
@@ -169,14 +175,8 @@ class GameScene: SKScene, UIScrollViewDelegate
         
         self.checkBasketBoundary()
         self.checkStarBoundary()
-<<<<<<< HEAD
-//        self.centerViewOnBall()
-        if ball != nil && outsideBasket?.physicsBody != nil{
-=======
-       
-        if ball != nil
-        {
->>>>>>> de6f1547d16e496c7a3f1a439a7c061434fc111d
+        self.checkEndGameWorldBoundary()
+        if ball != nil {
             cam!.position = ball!.position
         }
     }
@@ -189,22 +189,35 @@ class GameScene: SKScene, UIScrollViewDelegate
             {
                 outsideBasket?.physicsBody = nil
                 insideBasket?.physicsBody = nil
-<<<<<<< HEAD
-                let ballTransparencyAnimation = SKAction.fadeOut(withDuration: 3)
-                camera?.position = (basketImage?.position)!
-=======
                 
                 self.physicsWorld.gravity = CGVector(dx: 0.0, dy: 0.1)
                 self.physicsWorld.speed = CGFloat(0.2)
                 
                 let ballTransparencyAnimation = SKAction.fadeOut(withDuration: 1)
->>>>>>> de6f1547d16e496c7a3f1a439a7c061434fc111d
                 
                 ball?.run(ballTransparencyAnimation, completion:
                     {
                         self.viewController?.completeLevel(totalStars: self.totalStars, collectedStars: self.collectedStars)
                     })
                 
+                self.ball = nil
+            }
+        }
+    }
+    
+    func checkEndGameWorldBoundary() {
+        if ball != nil
+        {
+            if ball!.intersects(endGameWorldBoundary!)
+            {
+                
+                self.physicsWorld.gravity = CGVector(dx: 0.0, dy: 0.1)
+                self.physicsWorld.speed = CGFloat(0.2)
+                
+                let ballTransparencyAnimation = SKAction.fadeOut(withDuration: 0.5)
+                
+                self.ballFlag = false
+                self.cleanLevel = true
                 self.ball = nil
             }
         }
@@ -368,6 +381,37 @@ class GameScene: SKScene, UIScrollViewDelegate
         
         arrayOfNodes.append(slantedBasketWall!)
         
+    }
+    
+    func createWorldBoundaries() {
+        let worldBoundaryBezierPath = UIBezierPath()
+        worldBoundaryBezierPath.move(to: CGPoint(x: self.view!.frame.origin.x - 10.0, y: self.view!.frame.origin.y + 100))
+        worldBoundaryBezierPath.addLine(to: CGPoint(x: self.view!.frame.origin.x - 10.0, y: -currentLevel.contentSizeHeight! - 10))
+        worldBoundaryBezierPath.addLine(to: CGPoint(x: currentLevel.contentSizeWidth! + 10, y: -currentLevel.contentSizeHeight! - 10))
+        worldBoundaryBezierPath.addLine(to: CGPoint(x: currentLevel.contentSizeWidth! + 10, y: self.view!.frame.origin.y + 100))
+        worldBoundaryBezierPath.addLine(to: CGPoint(x: self.view!.frame.origin.x - 10.0, y: self.view!.frame.origin.x + 100.0))
+        
+        worldBoundary = SKShapeNode(path: worldBoundaryBezierPath.cgPath)
+        worldBoundary!.strokeColor = UIColor.red
+        worldBoundary!.position = CGPoint(x: worldBoundary!.position.x - ((self.view?.frame.width)! / 2), y: outsideBasket!.position.y + (self.view?.frame.height)! / 2)
+        worldBoundary!.physicsBody = SKPhysicsBody(edgeChainFrom: worldBoundary!.path!)
+        worldBoundary!.physicsBody?.collisionBitMask = 0b0011
+        self.addChild(worldBoundary!)
+        
+        let endGameWorldBoundaryBezierPath = UIBezierPath()
+        endGameWorldBoundaryBezierPath.move(to: CGPoint(x: self.view!.frame.origin.x - 10.0, y: -currentLevel.contentSizeHeight! - 10))
+        endGameWorldBoundaryBezierPath.addLine(to: CGPoint(x: currentLevel.contentSizeWidth! + 10, y: -currentLevel.contentSizeHeight! - 10))
+        
+        endGameWorldBoundary = SKShapeNode(path: endGameWorldBoundaryBezierPath.cgPath)
+        endGameWorldBoundary!.strokeColor = UIColor.red
+        endGameWorldBoundary!.position = CGPoint(x: worldBoundary!.position.x - ((self.view?.frame.width)! / 2), y: outsideBasket!.position.y + (self.view?.frame.height)! / 2)
+        endGameWorldBoundary!.physicsBody = SKPhysicsBody(edgeChainFrom: worldBoundary!.path!)
+        endGameWorldBoundary!.physicsBody?.collisionBitMask = 0b0011
+        
+        self.addChild(endGameWorldBoundary!)
+        
+        arrayOfNodes.append(worldBoundary!)
+        arrayOfNodes.append(endGameWorldBoundary)
     }
     
     func createBall(withImage: String)

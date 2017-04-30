@@ -12,7 +12,7 @@ import UIKit
 class LevelCompleteViewController: UIViewController {
     
     @IBOutlet var congratulationsView: UIView!
-    @IBOutlet var scoreLabel: UILabel!
+    @IBOutlet var starViewReferenceBox: UIView!
 
     var gameScene: GameScene!
     var levelManager: LevelManager!
@@ -83,6 +83,7 @@ class LevelCompleteViewController: UIViewController {
                     if (totalStars <= 3)
                     {
                         starX += 100
+        
                     }
                     else
                     {

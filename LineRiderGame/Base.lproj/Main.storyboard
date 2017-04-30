@@ -190,11 +190,20 @@
                                     <action selector="nextLevel:" destination="gK1-36-w4v" eventType="touchUpInside" id="WcD-e3-kgD"/>
                                 </connections>
                             </button>
+                            <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VlD-Ew-96D">
+                                <rect key="frame" x="213" y="175" width="240" height="24"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="240" id="hpk-0J-Nkr"/>
+                                    <constraint firstAttribute="height" constant="24" id="xuJ-3q-VD7"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="mHm-62-gL8" firstAttribute="top" secondItem="YEp-QI-hOi" secondAttribute="top" id="02c-fs-Rdq"/>
                             <constraint firstItem="cun-yt-5ht" firstAttribute="top" secondItem="YEp-QI-hOi" secondAttribute="top" id="0Ot-cX-khz"/>
+                            <constraint firstItem="VlD-Ew-96D" firstAttribute="centerY" secondItem="cun-yt-5ht" secondAttribute="centerY" id="2ZC-Xz-kQH"/>
                             <constraint firstItem="lTJ-b4-S47" firstAttribute="top" secondItem="i0L-c0-fqY" secondAttribute="bottom" constant="23" id="3xu-pc-FLo"/>
                             <constraint firstAttribute="trailing" secondItem="cun-yt-5ht" secondAttribute="trailing" id="4ig-3M-Btl"/>
                             <constraint firstAttribute="trailing" secondItem="mHm-62-gL8" secondAttribute="trailing" id="4u8-r7-3VH"/>
@@ -209,12 +218,14 @@
                             <constraint firstItem="ntb-3z-Ixh" firstAttribute="top" secondItem="cun-yt-5ht" secondAttribute="bottom" id="f8V-3U-Vwf"/>
                             <constraint firstItem="i0L-c0-fqY" firstAttribute="leading" secondItem="YEp-QI-hOi" secondAttribute="leadingMargin" id="h3t-Pw-kGe"/>
                             <constraint firstItem="ntb-3z-Ixh" firstAttribute="top" secondItem="I8S-1h-c7Q" secondAttribute="bottom" id="khB-M7-skt"/>
+                            <constraint firstItem="VlD-Ew-96D" firstAttribute="centerX" secondItem="cun-yt-5ht" secondAttribute="centerX" id="lh5-Tm-aEt"/>
                             <constraint firstItem="mHm-62-gL8" firstAttribute="leading" secondItem="YEp-QI-hOi" secondAttribute="leading" id="pef-Tv-OIy"/>
                             <constraint firstAttribute="trailing" secondItem="I8S-1h-c7Q" secondAttribute="trailing" id="yEa-MZ-E9W"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="congratulationsView" destination="i0L-c0-fqY" id="e8H-fA-wqg"/>
+                        <outlet property="starViewReferenceBox" destination="VlD-Ew-96D" id="sko-LX-dtF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TVd-wv-KHH" userLabel="First Responder" sceneMemberID="firstResponder"/>
